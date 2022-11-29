@@ -6,7 +6,7 @@ Data scientists can interact with Panoptes via Panoptes Description Language (PD
 # How does it work?
 To help us understand the inner workings of Panoptes, let's first look at a relatively simple set of resources being used to train ML models and serve their predictions.
 
-[panoptesGCP_-_noPanoptes.drawio](uploads/9d107f1e7827a4849ffeded6465dff1b/panoptesGCP_-_noPanoptes.drawio)
+![panoptesGCP_-_noPanoptes.drawio.svg](uploads/57efe9b8f1724d8366cf780083cfe550/panoptesGCP_-_noPanoptes.drawio.svg)
 
 The figure demonstrates a scenario where we:
 - Pull raw data from BigQuery.
