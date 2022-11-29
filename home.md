@@ -1,1 +1,0 @@
-# Panoptes Documentation
