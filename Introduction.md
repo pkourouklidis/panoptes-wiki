@@ -6,7 +6,7 @@ Data scientists can interact with Panoptes via Panoptes Description Language (PD
 # How does it work?
 To help us understand the inner workings of Panoptes, let's first look at a relatively simple set of resources being used to train ML models and serve their predictions.
 
-![panoptesGCP_-_noPanoptes.drawio.svg](uploads/67a13fc6cebf6c54bb6625a01b606cd2/panoptesGCP_-_noPanoptes.drawio.svg)
+[panoptesGCP_-_noPanoptes.drawio](uploads/9d107f1e7827a4849ffeded6465dff1b/panoptesGCP_-_noPanoptes.drawio)
 
 The figure demonstrates a scenario where we:
 - Pull raw data from BigQuery.
@@ -19,3 +19,4 @@ Now imagine that for every 1000 inference requests served, we would like to exec
 
 Panoptes bypasses this problem by providing a coordination layer that can be configured via an easy-to-use domain-specific language, PDL. In the figure below, we can see the additional components that are added to the infrastructure of our example.
 
+![panoptesGCP.drawio.svg](uploads/a84d503c00319dcbe851381861d7f048/panoptesGCP.drawio.svg)
