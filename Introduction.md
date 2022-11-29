@@ -19,4 +19,6 @@ Now imagine that for every 1000 inference requests served, we would like to exec
 
 Panoptes bypasses this problem by providing a coordination layer that can be configured via an easy-to-use domain-specific language, PDL. In the figure below, we can see the additional components that are added to the infrastructure of our example.
 
-![panoptesGCP.drawio.svg](uploads/a84d503c00319dcbe851381861d7f048/panoptesGCP.drawio.svg)
+![panoptesGCP.drawio.svg](uploads/9865909ade54df67cea658c87aee9ede/panoptesGCP.drawio.svg)
+
+The main component responsible for 
