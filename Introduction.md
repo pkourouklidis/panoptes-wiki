@@ -15,10 +15,15 @@ The figure demonstrates a scenario where we:
 - Push the resulting ML model artifact to a model registry.
 - Pull the ML model artifact into a model server and start serving inference requests
 
-Now imagine that for every 1000 inference requests served, we would like to execute an algorithm that checks that the statistical distribution of newly received features closely follows the distribution seen in the training set. We would have to either develop that functionality from scratch, which would require considerable effort, or use a managed service and be constrained to the functionality offered by the service and locked into a specific platform.
+Now imagine that for every 1000 inference requests served, we would like to execute an algorithm that checks that the statistical distribution of newly received features closely follows the distribution seen in the training set. In case a distribution shift is observed, we would like to receive an email notification so we can investigate further. In order to implement this functionality, we would have to either develop it from scratch, which would require considerable effort or use a managed service that might not exactly fit our requirements and would also lock us into a specific platform.
 
-Panoptes bypasses this problem by providing a coordination layer that can be configured via an easy-to-use domain-specific language, PDL. In the figure below, we can see the additional components that are added to the infrastructure of our example.
+Panoptes bypasses this problem by providing an abstraction layer on top of the infrastructure that can be configured via an easy-to-use domain-specific language, PDL. In the figure below, we can see the additional components that are added to the infrastructure of our example.
 
 ![panoptesGCP.drawio.svg](uploads/9865909ade54df67cea658c87aee9ede/panoptesGCP.drawio.svg)
 
-The main component responsible for 
+The main component of Panoptes is the orchestrator. This is the component responsible for parsing the PDL script provided by the data scientist and interfacing with the infrastructure to implement the behavior specified in it.
+
+In our example, the orchestrator needs to interact with the infrastructure in the following ways:
+- Receive an event every time an inference request is served.
+- Have a way to execute the shift-detecting algorithm.
+- Have a way to send out email notifications in case shift is observed.
