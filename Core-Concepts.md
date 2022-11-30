@@ -6,9 +6,10 @@ A _Platform_ describes the underlying infrastructure/Platform used for the train
 # Model
 To describe trained ML models that are ready for deployment, users can create _Model_ instances.
 
-```
-Model "callcenter-linear"{
-    uses wait_duration, service_duration
-    outputs p1 predicts is_happy
+<code>
+<b>Model</b> "callcenter-linear"{
+    <b>uses</b> wait_duration, service_duration
+    <b>outputs</b> p1
+    <b>predicts</b> is_happy
 }
-```
+</code>
