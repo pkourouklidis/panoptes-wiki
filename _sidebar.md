@@ -1,2 +1,3 @@
 - [Introduction](Introduction)
 - [Core Concepts](Core Concepts)
+- [PDL Syntax](PDL Syntax)
