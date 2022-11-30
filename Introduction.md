@@ -1,7 +1,7 @@
 # What is Panoptes?
-Panoptes is a low-code platform that helps you monitor the performance of deployed ML models. It does so by providing a coordination layer on top of your existing infrastructure so it can work on-prem or in the cloud provider of your choice.
+Panoptes is a low-code tool that helps data scientists safeguard the performance of deployed ML models against the various types of dataset shift. After the deployment of an ML model, there is no guarantee that incoming data will always follow the same statistical distribution as the data in the training set. Panoptes provides a way for data scientists to use the algorithm of their choice to detect dataset shift and trigger corrective actions if necessary.
 
-Data scientists can interact with Panoptes via Panoptes Description Language (PDL). Using PDL, data scientists can define how they would like their ML models to be monitored without worrying about infrastructure-specific technical details. More details about PDL can be found in the [syntax section](syntax). 
+To alleviate the complexity of platform-specific technical details (e.g on-prem vs Google Cloud Platform), Panoptes provides a high-level view of the underlying platform used for the training, deployment, and monitoring of ML models. Data scientists can use Panoptes Description Language (PDL) to create a complete specification of how they would like their models to be monitored.
 
 # How does it work?
 To help us understand the inner workings of Panoptes, let's first look at a relatively simple set of resources being used to train ML models and serve their predictions.
