@@ -1,2 +1,2 @@
 [Introduction](Introduction)
-[Core Concepts] (Core Concepts)
+[Core Concepts](Core Concepts)
