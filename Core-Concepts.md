@@ -1,4 +1,4 @@
-This page provides an overview of the core concepts that Panoptes uses. For the PDL syntax that can be used to create instances of these concepts in a way that fits each individual scenario take a look at the [PDL syntax section](PDL Syntax).
+This page provides an overview of the core concepts that Panoptes uses and the PDL syntax used to express them.
 
 # Platform
 A _Platform_ describes the underlying infrastructure/Platform used for the training, deployment, and monitoring of ML models. Every PDL script implicitly includes a _Platform_ instance so there's no PDL syntax to create one.
@@ -6,7 +6,7 @@ A _Platform_ describes the underlying infrastructure/Platform used for the train
 # Feature Store
 Every _Platform_ must contain a _Feature Store_ where the information about all available _Features_ and _Labels_ is contained. 
 
-<code> <b>FeatureStore</b>{
+<code><b>FeatureStore</b>{
 	<b>features</b>
 	    wait_duration
 		service_duration
@@ -77,7 +77,8 @@ An _Action_ is a functionality of the underlying platform that can be triggered 
 In line with _Algorithm Executions_, _Action Executions_ are the application of a generic _Action_ in a specific scenario.
 
 <code><b>ActionExecution</b> retrainCallcenterLinear{
-	    <b>action</b> retrainAction
-	    <b>parameter values</b> ioNames="wait_duration,service_duration,is_happy",  
-	        containerImage="registry.docker.nat.bt.com/panoptes/callcenter-model-training:latest"
+    <b>action</b> retrainAction
+    <b>parameter values</b>
+        ioNames="wait_duration,service_duration,is_happy",  
+        containerImage="registry.docker.nat.bt.com/panoptes/callcenter-model-training:latest"
 	}</code>
