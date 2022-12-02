@@ -6,13 +6,13 @@ A _Platform_ describes the underlying infrastructure/Platform used for the train
 # Feature Store
 Every _Platform_ must contain a _Feature Store_ where the information about all available _Features_ and _Labels_ is contained. 
 
-<pre><code><b>FeatureStore</b>{
+<code><b>FeatureStore</b>{
 	<b>features</b>
 	    wait_duration
 		service_duration
 	<b>labels</b> 
 	    is_happy
-}</code></pre>
+}</code>
 
 # Model
 To describe trained ML models that are ready for deployment, users can create _Model_ instances.
@@ -55,7 +55,7 @@ An _Algorithm_ can detect dataset shift in a variety of diffent scenarios. On th
 		<b>live data</b> wait_duration
 		<b>historic data</b> wait_duration
 		<b>actions</b> 1->retrainCallcenterLinear
-		<b>parameter values</b> pValue = 0.05
+		<b>parameter values</b> pValue = "0.05"
 	}</code></pre>
 
 For _Base Algorithm Executions_, the user has to specify:
