@@ -103,14 +103,14 @@ A _Trigger_ specifies how often an Algorithm execution should be triggered.
 
 ```
 Trigger t1{
-	every
-	100 samples
+    every
+    100 samples
     100 predictions
     100 labels
-	or
-	every
-	one day
-	execute exec1
+    or
+    every
+    one day
+    execute exec1
 }
 ```
 The above trigger, for example, specifies that the _Algorithm Execution_ *exec1* will be triggered if either of the following two alternatives is true:
