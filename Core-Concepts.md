@@ -17,12 +17,13 @@ Every _Platform_ must contain a _Feature Store_ where the information about all 
 # Model
 To describe trained ML models that are ready for deployment, users can create _Model_ instances.
 
-<pre><code><b>Model</b> "callcenter-linear"{
-    <b>uses</b> wait_duration, service_duration
-    <b>outputs</b> p1
-    <b>predicts</b> is_happy
+```
+Model "callcenter-linear"{
+    uses wait_duration, service_duration
+    outputs p1
+    predicts is_happy
 }
-</code></pre>
+```
 
 # Algorithm
 An _Algorithm_ can be used to detect dataset shift. There are two kinds of _Algorithms_ that a user can define. _Base Algorithms_ and _Higher Order Algorithms_. A _Base Algorithm_ receives as input historical data (ie. data that was used to train the ML model) and live data (ie. recent data seen in inference requests). A _Higher Order Algorithm_ receives as input, a set of outputs from previous executions of other _Algorithms_.
