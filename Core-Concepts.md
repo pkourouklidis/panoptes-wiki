@@ -144,12 +144,12 @@ Deployment callcenter{
 	}
 	
 	Trigger t1{
-	every
-	100 samples
-	or
-	every
-	one day
-	execute exec1
+        every
+        100 samples
+        or
+        every
+        one day
+        execute exec1
 	}
 }
 ```
