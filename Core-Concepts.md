@@ -1,9 +1,9 @@
 This page provides an overview of the core concepts that Panoptes uses and the PDL syntax used to express them.
 
-# Platform
+## Platform
 A _Platform_ describes the underlying infrastructure/Platform used for the training, deployment, and monitoring of ML models. Every PDL script implicitly includes a _Platform_ instance so there's no PDL syntax to create one.
 
-# Feature Store
+## Feature Store
 Every _Platform_ must contain a _Feature Store_ where the information about all available _Features_ and _Labels_ is contained. 
 
 ```
@@ -16,7 +16,7 @@ FeatureStore{
 }
 ```
 
-# Model
+## Model
 To describe trained ML models that are ready for deployment, users can create _Model_ instances.
 
 ```
@@ -28,7 +28,7 @@ Model "callcenter-linear"{
 ```
 
 
-# Algorithm
+## Algorithm
 An _Algorithm_ can be used to detect dataset shift. There are two kinds of _Algorithms_ that a user can define. _Base Algorithms_ and _Higher Order Algorithms_. A _Base Algorithm_ receives as input historical data (ie. data that was used to train the ML model) and live data (ie. recent data seen in inference requests). A _Higher Order Algorithm_ receives as input, a set of outputs from previous executions of other _Algorithms_.
 
 ```
@@ -46,7 +46,7 @@ BaseAlgorithm kstest{
 
 - An _Algorithm_ can be parameterized. The names of the _Algorithm's_ parameters are specified with the _parameters_ keyword.
 
-# Algorithm Runtime
+## Algorithm Runtime
 An _Algorithm Runtime_ represents the capability of the underlying platform to execute _Algorithms_ that are implemented using a specific technology (eg. An _Algorithm_ implemented as a Python function). As with _Algorithms_, there are two kinds of _Algorithm Runtimes_, _Base Algorithm Runtimes_ and _Higher Order Algorithm Runtimes_.
 
 ```
@@ -57,7 +57,7 @@ BaseAlgorithmRuntime pythonFunction
 HigherOrderAlgorithmRuntime HoPythonFunction
 ```
 
-# Algorithm Execution
+## Algorithm Execution
 An _Algorithm_ can detect dataset shift in a variety of diffent scenarios. On the other hand, an _Algorithm Execution_ is the application of an _Algorithm_ in a specific scenario. 
 
 ```
@@ -76,7 +76,7 @@ For _Base Algorithm Executions_, the user has to specify:
 - A mapping from the potential results of the _Algorithm Execution_ to the _Action_ that should be triggered.
 - Values for the parameters of the _Algorithm_ if there are any.
 
-# Action
+## Action
 An _Action_ is a functionality of the underlying platform that can be triggered in response to dataset shift.
 
 ```
@@ -87,7 +87,7 @@ Action retrainAction{
 }
 ```
 
-# Action Execution
+## Action Execution
 In line with _Algorithm Executions_, _Action Executions_ are the application of a generic _Action_ in a specific scenario.
 
 ```
@@ -98,7 +98,7 @@ ActionExecution retrainCallcenterLinear{
         containerImage="registry.docker.nat.bt.com/panoptes/callcenter-model-training:latest"
 }
 ```
-# Trigger
+## Trigger
 A _Trigger_ specifies how often an Algorithm execution should be triggered.
 
 ```
@@ -117,7 +117,7 @@ The above trigger, for example, specifies that the _Algorithm Execution_ *exec1*
 - There has been at least 100 inference requests, 100 inference responses and 100 ground truth labels since the last time this trigger has gone off.
 - There has been at least one day since the last time this trigger has gone off.
 
-# Deployment
+## Deployment
 A _Deployment_ groups together a deployed ML model and all of the information needed to monitor its performance. _Algorithm Executions_, _Action Executions_, and _triggers_ can only be defined within a _Deployment_.
 
 ```
