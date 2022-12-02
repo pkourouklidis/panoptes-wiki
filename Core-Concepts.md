@@ -18,7 +18,7 @@ Every _Platform_ must contain a _Feature Store_ where the information about all 
 To describe trained ML models that are ready for deployment, users can create _Model_ instances.
 
 
-    Model "callcenter-linear"{
+    **Model** "callcenter-linear"{
         uses wait_duration, service_duration
         outputs p1
         predicts is_happy
