@@ -8,11 +8,11 @@ Every _Platform_ must contain a _Feature Store_ where the information about all 
 
 ```
 FeatureStore{
-	features
-	    wait_duration
-		service_duration
-	labels 
-	    is_happy
+    features
+        wait_duration
+        service_duration
+    labels 
+        is_happy
 }
 ```
 
@@ -33,7 +33,7 @@ An _Algorithm_ can be used to detect dataset shift. There are two kinds of _Algo
 
 ```
 BaseAlgorithm kstest{
-	codebase "https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/example-algorithm-repo"
+    codebase "https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/example-algorithm-repo"
     runtime pythonFunction
     severity levels 2
     parameters pValue
@@ -122,34 +122,34 @@ A _Deployment_ groups together a deployed ML model and all of the information ne
 
 ```
 Deployment callcenter{
-	model "callcenter-linear"
-	
-	BaseAlgorithmExecution exec1{
-		algorithm kstest
-		live data wait_duration
-		historic data wait_duration
-		actions 1->emailMe
-		parameter values pValue = "0.05"
-	}
-	
-	ActionExecution emailMe{
-		action emailAction
-		parameter values email=panagiotis.kourouklidis@bt.com
-	}
-	
-	ActionExecution retrainCallcenterLinear{
-	    action retrainAction
-	    parameter values ioNames="wait_duration,service_duration,is_happy",  
-	        containerImage="registry.docker.nat.bt.com/panoptes/callcenter-model-training:latest"
-	}
-	
-	Trigger t1{
-            every
-            100 samples
-            or
-            every
-            one day
-            execute exec1
-	}
+    model "callcenter-linear"
+    
+    BaseAlgorithmExecution exec1{
+        algorithm kstest
+        live data wait_duration
+        historic data wait_duration
+        actions 1->emailMe
+        parameter values pValue = "0.05"
+    }
+    
+    ActionExecution emailMe{
+        action emailAction
+        parameter values email=panagiotis.kourouklidis@bt.com
+    }
+    
+    ActionExecution retrainCallcenterLinear{
+        action retrainAction
+        parameter values ioNames="wait_duration,service_duration,is_happy",  
+            containerImage="registry.docker.nat.bt.com/panoptes/callcenter-model-training:latest"
+    }
+    
+    Trigger t1{
+        every
+        100 samples
+        or
+        every
+        one day
+        execute exec1
+    }
 }
 ```
