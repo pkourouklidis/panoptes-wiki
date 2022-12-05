@@ -1,4 +1,3 @@
 - [Home](Home)
 - [Core Concepts](Core Concepts)
-- [PDL Syntax](PDL Syntax)
 - [Platform Integration](Platform Integration)
