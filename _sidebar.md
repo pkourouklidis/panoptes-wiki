@@ -1,4 +1,4 @@
 - [Home](Home)
 - [Core Concepts](Core Concepts)
-- [Platform Integration](Platform Integration)
 - [Available Algorithm Runtimes](Algorithm Runtimes)
+- [Platform Integration](Platform Integration)
