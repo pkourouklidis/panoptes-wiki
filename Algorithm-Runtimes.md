@@ -19,6 +19,8 @@ def detector(trainSet, liveSet, parameters):
 ```
 As you can see the function has three arguments. The first two, `trainSet` and `liveSet` are Pandas dataframes and will contain the feature/predictions/labels specified in an [Algorithm Execution](Core Concepts#algorithm-execution) that uses our _Algorithm_. The third argument, `parameters`, is a dictionary that will contain the parameter key-value pairs specified in the aforementioned _Algorithm Execution_.
 
+If your detector makes use of external python packages, you must include in the git repository that stores your algorithm implementation, a requirements.txt file containing the packages needed.
+
 For the development of a new _Algorithm_, you can use the Panoptes CLI to test your python function locally before you use it in production.
 To install the Panoptes CLI first clone the following git repository:
 
@@ -30,7 +32,7 @@ Then install the python package included in the cloned repo:
 
 Now you can use the Panoptes CLI to test your algorithms locally.
 
-`panoptes --live ./datasets/live.csv --historical ./datasets/historical.csv -detector ./detector.py --parameter pValue=0.05`
+`panoptes --live ./datasets/live.csv --historical ./datasets/historical.csv --detector ./detector.py --parameter pValue=0.05`
 
 You need to pass in paths to csv files containing the live and historical datasets, the path to the python file that contains the `detector` function, and key-value pairs for any parameters that your detector needs.
 
