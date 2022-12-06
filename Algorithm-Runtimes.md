@@ -4,7 +4,7 @@ As seen in the [Core Concepts section](Core Concepts), algorithm runtimes provid
 To implement an algorithm in a way that a specific algorithm runtime can understand, users should follow the specifications provided by the developer of the runtime. Below are the specifications for the currently deployed runtimes.
 
 ## Python Function Algorithm Runtime
-The specifications for this _Algorithm Runtime_ are quite simple. In [this](https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/example-algorithm-repo) repository you can find the example of an algorithm implemented for this runtime.
+The specifications for this _Algorithm Runtime_ are quite simple. In [this](https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/example-algorithm-repo) repository you can find an example algorithm implemented for this runtime.
 
 All the user needs to do is implement a function called `detector` like so:
 ```python
