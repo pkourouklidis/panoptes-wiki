@@ -17,4 +17,4 @@ def detector(trainSet, liveSet, parameters):
     threshold = float (parameters.get("pValue", 0.05))
     return int(pValue < threshold), pValue
 ```
-As you can see the function has three arguments. The first two, `trainSet` and `liveSet` are Pandas dataframes and will contain the feature/predictions/labels specified in an [Algorithm Execution](Core Concepts#algorithm-execution) that uses our _Algorithm_. The third argument is a dictionary that will contain the parameter key-value pairs specified in the aforementioned _Algorithm Execution_.
+As you can see the function has three arguments. The first two, `trainSet` and `liveSet` are Pandas dataframes and will contain the feature/predictions/labels specified in an [Algorithm Execution](Core Concepts#algorithm-execution) that uses our _Algorithm_. The third argument, `parameters`, is a dictionary that will contain the parameter key-value pairs specified in the aforementioned _Algorithm Execution_.
