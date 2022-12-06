@@ -10,7 +10,7 @@ All the user needs to do is implement a function called `detector` like so:
 ```python
 from scipy import stats
 
-#ksTest detector
+#two-sample Kolmogorov-Smirnov test
 def detector(trainSet, liveSet, parameters):
     firstFeature = trainSet.axes[1][0]
     pValue = stats.ks_2samp(trainSet[firstFeature].to_list(), liveSet[firstFeature].to_list())[1]
