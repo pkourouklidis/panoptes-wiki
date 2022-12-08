@@ -1,10 +1,10 @@
 This page provides an overview of the core concepts that Panoptes uses and the PDL syntax used to express them.
 
 ## Platform
-A _Platform_ describes the underlying infrastructure/Platform used for the training, deployment, and monitoring of ML models. Every PDL script implicitly includes a _Platform_ instance so there's no PDL syntax to create one.
+A _Platform_ describes the underlying infrastructure/environment used for the training, deployment, and monitoring of ML models. Every PDL script maps to exactly one _Platform_ instance so there's no need to explicitly define it.
 
 ## Feature Store
-Every _Platform_ must contain a _Feature Store_ where the information about all available _Features_ and _Labels_ is contained. 
+Every _Platform_ must contain a _Feature Store_ which stores information about all available _Features_ and _Labels_. 
 
 ```
 FeatureStore{
@@ -40,7 +40,7 @@ BaseAlgorithm kstest{
 }
 ```
 
-- As PDL is used for specifying the monitoring process at a high level, the algorithm itself is implemented in a general purpose programming language and stored in the git repository specifed with the _codebase_ keyword. How the algorithm is implemented depends on the _Algorithm Runtime_ that is used to execute it.
+- As PDL is used for specifying the monitoring process at a high level, the algorithm itself is implemented in a general-purpose programming language and stored in the git repository specified with the _codebase_ keyword. How the algorithm is implemented depends on the _Algorithm Runtime_ that is used to execute it.
 
 - When an _Algorithm_ is executed it must return a number in [0,n), where n is the number specified with the _severity levels_ keyword. This can express different severity levels of dataset shift if the _Algorithm_ supports it. Users can specify different _Actions_ taken in response to different _severity levels_.
 
