@@ -1,4 +1,4 @@
-This page provides an overview of the core concepts that Panoptes uses and the PDL syntax used to express them.
+This page provides an overview of the core concepts that Panoptes uses and the PDL syntax used to express them. The [web editor](http://editor.panoptes.uk/) can help you get familiar with PDL.
 
 ## Platform
 A _Platform_ describes the underlying infrastructure/environment used for the training, deployment, and monitoring of ML models. Every PDL script maps to exactly one _Platform_ instance so there's no need to explicitly define it.
