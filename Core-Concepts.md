@@ -20,9 +20,9 @@ FeatureStore{
 To describe trained ML models that are ready for deployment, users can create _Model_ instances.
 
 ```
-Model "callcenter-linear"{
+Model callcenter-linear{
     uses wait_duration, service_duration
-    outputs p1
+    outputs hapiness_prediction
     predicts is_happy
 }
 ```
@@ -32,7 +32,7 @@ Model "callcenter-linear"{
 An _Algorithm_ can be used to detect dataset shift. There are two kinds of _Algorithms_ that a user can define. _Base Algorithms_ and _Higher Order Algorithms_. A _Base Algorithm_ receives as input historical data (ie. data that was used to train the ML model) and live data (ie. recent data seen in inference requests). A _Higher Order Algorithm_ receives as input, a set of outputs from previous executions of other _Algorithms_.
 
 ```
-BaseAlgorithm kstest{
+BaseAlgorithm kolmogorovSmirnov{
     codebase "https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/example-algorithm-repo"
     runtime pythonFunction
     severity levels 2
@@ -61,10 +61,10 @@ HigherOrderAlgorithmRuntime HoPythonFunction
 An _Algorithm_ can detect dataset shift in a variety of diffent scenarios. On the other hand, an _Algorithm Execution_ is the application of an _Algorithm_ in a specific scenario. 
 
 ```
-BaseAlgorithmExecution exec1{
-    algorithm kstest
+BaseAlgorithmExecution wait_duration_shift{
+    algorithm kolmogorovSmirnov
     live data wait_duration
-    historic data wait_duration
+    historical data wait_duration
     actions 1->retrainCallcenterLinear
     parameter values pValue = 0.05
 }
@@ -80,7 +80,7 @@ For _Base Algorithm Executions_, the user has to specify:
 An _Action_ is a functionality of the underlying platform that can be triggered in response to dataset shift.
 
 ```
-Action retrainAction{
+Action retrain{
     parameters
         ioNames,
         containerImage
@@ -110,11 +110,11 @@ Trigger t1{
     or
     every
     one day
-    execute exec1
+    execute wait_duration_shift
 }
 ```
 The above trigger, for example, specifies that the _Algorithm Execution_ *exec1* will be triggered if either of the following two alternatives is true:
-- There has been at least 100 inference requests, 100 inference responses and 100 ground truth labels since the last time this trigger has gone off.
+- There have been at least 100 inference requests, 100 inference responses and 100 ground truth labels since the last time this trigger has gone off.
 - There has been at least one day since the last time this trigger has gone off.
 
 ## Deployment
@@ -122,14 +122,14 @@ A _Deployment_ groups together a deployed ML model and all of the information ne
 
 ```
 Deployment callcenter{
-    model "callcenter-linear"
+    model callcenter-linear
     
-    BaseAlgorithmExecution exec1{
-        algorithm kstest
+    BaseAlgorithmExecution wait_duration_shift{
+        algorithm kolmogorovSmirnov
         live data wait_duration
-        historic data wait_duration
+        historical data wait_duration
         actions 1->emailMe
-        parameter values pValue = "0.05"
+        parameter values pValue = 0.05
     }
     
     ActionExecution emailMe{
@@ -149,7 +149,7 @@ Deployment callcenter{
         or
         every
         one day
-        execute exec1
+        execute wait_duration_shift
     }
 }
 ```
