@@ -3,18 +3,17 @@ Out of the box, the [Panoptes web editor](http://editor.panoptes.uk) can help us
 ## Parameter Type Correctness
 _Algorithms_  and _Actions_ might be developed by one person and used in _Algorithm/Action Executions_ created by other members of a team. In that case the creator of the  _Algorithm_/_Action_ add type annotations to any defined _parameters_ to help guide others.
 ```
-BaseAlgorithm kstest{
+BaseAlgorithm kolmogorovSmirnov{
     codebase "https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/example-algorithm-repo"
     runtime pythonFunction
     severity levels 2
-    accepts only continuous
-parameters pValue:Real
+    parameters pValue:Real
 }
 
-BaseAlgorithmExecution exec1{
-    algorithm kstest
+BaseAlgorithmExecution wait_duration_shift{
+    algorithm kolmogorovSmirnov
     live data wait_duration
-    historic data wait_duration
+    historical data wait_duration
     actions 1->retrainCallcenterLinear
     parameter values pValue = true
 }
@@ -33,18 +32,18 @@ FeatureStore{
         is_happy:categorical
 }
 
-BaseAlgorithm kstest{
+BaseAlgorithm kolmogorovSmirnov{
     codebase "https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/example-algorithm-repo"
     runtime pythonFunction
     severity levels 2
     accepts only continuous
-parameters pValue:Real
+    parameters pValue:Real
 }
 
-BaseAlgorithmExecution exec1{
-    algorithm kstest
+BaseAlgorithmExecution wait_duration_shift{
+    algorithm kolmogorovSmirnov
     live data is_happy
-    historic data is_happy
+    historical data is_happy
     actions 1->retrainCallcenterLinear
     parameter values pValue = 0.05
 }
