@@ -1,4 +1,5 @@
 - [Home](Home)
 - [Core Concepts](Core Concepts)
+- [Validity Checks](Validity Checks)
 - [Available Algorithm Runtimes](Algorithm Runtimes)
 - [Platform Integration](Platform Integration)
