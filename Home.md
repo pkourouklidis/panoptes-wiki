@@ -13,7 +13,7 @@ To avoid presenting a lot of material during our meeting, I thought it would be 
 
 ## Step 1: Evaluating comprehensibility
 We would like to evaluate how easy it is for experts in the domain of data science to understand PDL. For this we have created an example PDL script targeting the call center demo system and a small questionaire to check that the participants understand what the script defines.
-- Example script
+- [Example script](Example Script)
 - Questionaire
 
 ## Step 2: Evaluating usability
