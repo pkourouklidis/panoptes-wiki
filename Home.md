@@ -1,4 +1,3 @@
-## Introduction
 Welcome to the Panoptes evaluation study. Thank you for participating! The goal of this study is to evaluate the usability and usefulness of Panoptes in a context that is as realistic as possible under laboratory conditions.
 
 To simplify the process, I have included in this wiki all the information that the participants are going to need. Here is the step-by-step process of this study.
