@@ -1,4 +1,4 @@
-This page provides an overview of the core concepts that Panoptes uses and the PDL syntax used to express them. The [web editor](http://editor.panoptes.uk/) can help you get familiar with PDL.
+This page provides an overview of the core concepts that Panoptes uses and the PDL syntax used to express them. The [web editor](http://editor.panoptes.uk/) provides syntax highlighting and error checking that can help you get familiar with PDL.
 
 ## Platform
 A _Platform_ describes the underlying infrastructure/environment used for the training, deployment, and monitoring of ML models. Every PDL script maps to exactly one _Platform_ instance so there's no need to explicitly define it.
@@ -9,8 +9,9 @@ Every _Platform_ must contain a _Feature Store_ which stores information about a
 ```
 FeatureStore{
     features
-        wait_duration
-        service_duration
+        wait_duration,
+        service_duration,
+        is_solved
     labels 
         is_happy
 }
@@ -21,7 +22,7 @@ To describe trained ML models that are ready for deployment, users can create _M
 
 ```
 Model callcenter-linear{
-    uses wait_duration, service_duration
+    uses wait_duration, service_duration, is_solved
     outputs hapiness_prediction
     predicts is_happy
 }
@@ -29,10 +30,10 @@ Model callcenter-linear{
 
 
 ## Algorithm
-An _Algorithm_ can be used to detect dataset shift. There are two kinds of _Algorithms_ that a user can define. _Base Algorithms_ and _Higher Order Algorithms_. A _Base Algorithm_ receives as input historical data (ie. data that was used to train the ML model) and live data (ie. recent data seen in inference requests). A _Higher Order Algorithm_ receives as input, a set of outputs from previous executions of other _Algorithms_.
+An _Algorithm_ can be used to detect dataset shift. There are two kinds of _Algorithms_ that a user can define. _Base Algorithms_ and _Higher Order Algorithms_. A _Base Algorithm_ receives as input historical data (ie. data that was used to train the ML model) and live data (ie. recent data seen in prediction requests). A _Higher Order Algorithm_ receives as input, a set of outputs from previous executions of other _Algorithms_.
 
 ```
-BaseAlgorithm kolmogorovSmirnov{
+BaseAlgorithm kolmogorovsmirnov{
     codebase "https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/example-algorithm-repo"
     runtime pythonFunction
     severity levels 2
@@ -42,12 +43,12 @@ BaseAlgorithm kolmogorovSmirnov{
 
 - As PDL is used for specifying the monitoring process at a high level, the algorithm itself is implemented in a general-purpose programming language and stored in the git repository specified with the _codebase_ keyword. How the algorithm is implemented depends on the _Algorithm Runtime_ that is used to execute it.
 
-- When an _Algorithm_ is executed it must return a number in [0,n), where n is the number specified with the _severity levels_ keyword. This can express different severity levels of dataset shift if the _Algorithm_ supports it. Users can specify different _Actions_ taken in response to different _severity levels_.
+- When an _Algorithm_ is executed it must return a number in [0,n), where n is the number specified with the _severity levels_ keyword. The value 0 should be used to signify the absence of dataset shift and subsequent numbers to signify the presence of dataset shift of increasing severity. Users can specify different _Actions_ to be taken in response to different _severity levels_.
 
 - An _Algorithm_ can be parameterized. The names of the _Algorithm's_ parameters are specified with the _parameters_ keyword.
 
 ## Algorithm Runtime
-An _Algorithm Runtime_ represents the capability of the underlying platform to execute _Algorithms_ that are implemented using a specific technology (eg. An _Algorithm_ implemented as a Python function). As with _Algorithms_, there are two kinds of _Algorithm Runtimes_, _Base Algorithm Runtimes_ and _Higher Order Algorithm Runtimes_.
+An _Algorithm Runtime_ represents the capability of the underlying platform to execute _Algorithms_ that are implemented using a specific technology (e.g. An _Algorithm_ implemented as a Python function). As with _Algorithms_, there are two kinds of _Algorithm Runtimes_, _Base Algorithm Runtimes_ and _Higher Order Algorithm Runtimes_.
 
 ```
 BaseAlgorithmRuntime pythonFunction
@@ -62,7 +63,7 @@ An _Algorithm_ can detect dataset shift in a variety of diffent scenarios. On th
 
 ```
 BaseAlgorithmExecution wait_duration_shift{
-    algorithm kolmogorovSmirnov
+    algorithm kolmogorovsmirnov
     live data wait_duration
     historical data wait_duration
     actions 1->retrainCallcenterLinear
@@ -72,7 +73,7 @@ BaseAlgorithmExecution wait_duration_shift{
 
 For _Base Algorithm Executions_, the user has to specify:
 - The _Algorithm_ to be executed.
-- Which features will to be used as input from the historic and the live dataset.   
+- Which features/predictions/labels will be used as input from the historic and the live dataset. It is not necessary to include data from both sets. It is    
 - A mapping from the potential results of the _Algorithm Execution_ to the _Action_ that should be triggered.
 - Values for the parameters of the _Algorithm_ if there are any.
 
