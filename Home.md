@@ -26,3 +26,5 @@ We now ask the participant to modify the script provided such that the system ca
 - scenario 3: Concept shift
 
 ## Step 3: Evaluating effort-reduction
+In this final step, we would like to ask the participants to estimate the potential of Panoptes to reduce the effort required for the monitoring of ML model performance. You can base your estimate on your interaction with the demo provided and your previous experience with using ML models in production.
+- Effort-reduction evaluation form
