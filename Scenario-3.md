@@ -1,0 +1,1 @@
+In this scenario, we want to run a simulation with concept shift. In essence, the average wait/service time will stay the same but the customers' tolerance to waiting and failure of issue resolution will change.
