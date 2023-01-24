@@ -1,5 +1,6 @@
 - [Home](Home)
 - [Introduction](Introduction)
+- [Demo System](Demo System)
 - [Core Concepts](Core Concepts)
 - [Validity Checks](Validity Checks)
 - [Available Algorithm Runtimes](Algorithm Runtimes)
