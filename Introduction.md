@@ -1,8 +1,8 @@
 ## The Problem
 The fact that an ML model has achieved good performance for some time is not a guarantee that it will continue to perform well indefinitely. The following are a couple of scenarios to illustrate the point.
 - For a model that predicts a patient's illness from observed symptoms: Due to the seasonality of certain viruses, certain symptoms might be observed more often in some months (prior probability shift).
-- A video hosting service develops a model that predicts link click-through rate based on the user's demographic: A change in users' preferences can affect the click-through rate even if the demographic stays the same (concept shift).
-- Alternatively in the above scenario: The service might suddenly become popular with users that belong to a different demographic and that might also affect performance (covariate shift).
+- A video hosting service develops a model that predicts link click-through rate based on the user's demographic(e.g age and gender): A change in users' preferences can affect the click-through rate even if the demographic stays the same (concept shift).
+- Alternatively in the above scenario: The service might suddenly become popular with users that belong to a different demographic(e.g older people suddenly start using the service) and that might also affect performance (covariate shift).
 The above scenarios can be grouped under the umbrella term of [_dataset shift_](https://www.sciencedirect.com/science/article/abs/pii/S0031320311002901).
 
 ## What is Panoptes?
