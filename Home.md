@@ -4,12 +4,12 @@ To simplify the process, I have included in this wiki all the information that t
 
 ## Step 0: Preparation
 To avoid presenting a lot of material during our meeting, I thought it would be good to create some documentation that the participants can read at their own pace. This way we can hopefully have more time. Below are the links to the relevant material.
-- High level overview of this project.
+- [High level overview of this project.](Introduction)
 - Explanation of the demo system that we've build to showcase the functionality of Panoptes.
-- The core concepts of Panoptes Description Language (PDL).
-- Additional features of PDL related to validity checks.
-- Adding custom algorithms to detect dataset shift
-- How Panoptes integrates with the underlying platform (optional)
+- [The core concepts of Panoptes Description Language (PDL).](Core Concepts)
+- [Additional features of PDL related to validity checks.](Validity Checks)
+- [Adding custom algorithms to detect dataset shift.](Available Algorithm Runtimes)
+- [How Panoptes integrates with the underlying platform (optional).](Platform Integration)
 
 ## Step 1: Evaluating comprehensibility
 We would like to evaluate how easy it is for experts in the domain of data science to understand PDL. For this we have created an example PDL script targeting the call center demo system and a small questionaire to check that the participants understand what the script defines.
