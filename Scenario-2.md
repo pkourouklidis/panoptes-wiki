@@ -1,0 +1,1 @@
+In this scenario, we want to run a simulation with covariate shift. In essence, the average service time will be increased but customers' tolerance to waiting and failure of issue resolution will stay the same.
