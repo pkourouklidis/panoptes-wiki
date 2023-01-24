@@ -11,11 +11,15 @@ The following are the two user interfaces that you can use to interact with the 
 ## User Dashboard
 The user dashboard can be accessed [here](https://ui.dashboard.callcentre.panoptes.betalab.rp.bt.com).
 In the user dashboard, one can see information about every call center simulation that has been run so far.
+
 IMAGE
+
 explanation
 
 ## Simulation Dashboard
 The simulation dashboard can be accessed [here](https://ui.digitaltwin.callcentre.panoptes.betalab.rp.bt.com).
 In the simulation dashboard, one can start and stop simulation runs with specific configurations.
+
 IMAGE
+
 explanation
