@@ -19,11 +19,11 @@ We would like to evaluate how easy it is for experts in the domain of data scien
 ## Step 2: Evaluating usability
 We would also like to evaluate how easy it is for users to use PDL to specify new behaviors. For this, we start by showcasing the behavior of the system with the example script that is already provided.
 
-- scenario 1: No dataset shift.
-- scenario 2: Covariate shift.
+- [Scenario 1: No dataset shift.](Scenario 1)
+- [Scenario 2: Covariate shift.](Scenario 2)
 
 We now ask the participant to modify the script provided such that the system can detect concept shift and respond by sending us an email notification. Participants are free to provide their own algorithms or use the one implemented by us.
-- scenario 3: Concept shift
+- [Scenario 3: Concept shift](Scenario 3)
 
 ## Step 3: Evaluating effort-reduction
 In this final step, we would like to ask the participants to estimate the potential of Panoptes to reduce the effort required for the monitoring of ML model performance. You can base your estimate on your interaction with the demo provided and your previous experience with using ML models in production.
