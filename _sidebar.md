@@ -1,4 +1,5 @@
 - [Home](Home)
+- [Introduction](Introduction)
 - [Core Concepts](Core Concepts)
 - [Validity Checks](Validity Checks)
 - [Available Algorithm Runtimes](Algorithm Runtimes)
