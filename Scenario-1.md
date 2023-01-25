@@ -84,18 +84,29 @@ Deployment callcenter{
 
 ## Simulation settings
 Apply the following settings in the [simulation dashboard](https://ui.digitaltwin.callcentre.panoptes.betalab.rp.bt.com/) and let it run for 100 calls:
+
 Call Interval: minimum
+
 Average Call Difficulty: minimum
+
 Wait Time Until Call Gets Bounced: maximum
+
 Average Service Time: minimum
 
+
 Expected Wait Time: minimum
+
 Average Patience During Waiting: minimum (fully patient)
+
 Average Patience During Service: minimum (fully patient)
+
 Average Understanding for Failure: minimum (fully tolerant)
 
+
 Number of Workers: 15
+
 Average Worker Skill: maximum
+
 Average Worker Speed: maximum
 
 ## Expected Result
