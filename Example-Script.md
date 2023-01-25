@@ -9,7 +9,7 @@ FeatureStore{
 	    is_happy:categorical
 }
 
-Model callcenter-linear{
+Model callcenter-tree{
     uses wait_duration, service_duration, is_solved
     outputs hapiness_prediction
     predicts is_happy
@@ -43,7 +43,7 @@ Action retrain{
 }
 
 Deployment callcenter{
-	model "callcenter-linear"
+	model callcenter-tree
 	
 	BaseAlgorithmExecution service_duration_shift{
 		algorithm kolmogorovsmirnov
@@ -55,7 +55,7 @@ Deployment callcenter{
 	
 	BaseAlgorithmExecution callcenter-accuracy{
 		algorithm accuracycheck
-		live data is_happy, callcenter-linear.hapiness_prediction
+		live data is_happy, callcenter-tree.hapiness_prediction
 		actions 1->emailMe
 		parameter values threshold = "0.80"
 	}
