@@ -21,7 +21,7 @@ FeatureStore{
 To describe trained ML models that are ready for deployment, users can create _Model_ instances.
 
 ```
-Model callcenter-linear{
+Model callcenter-tree{
     uses wait_duration, service_duration, is_solved
     outputs hapiness_prediction
     predicts is_happy
