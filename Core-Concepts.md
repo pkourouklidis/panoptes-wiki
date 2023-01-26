@@ -30,7 +30,7 @@ Model callcenter-tree{
 
 
 ## Algorithm
-An _Algorithm_ can be used to detect dataset shift. There are two kinds of _Algorithms_ that a user can define. _Base Algorithms_ and _Higher Order Algorithms_. A _Base Algorithm_ receives as input historical data (ie. data that was used to train the ML model) and live data (ie. recent data seen in prediction requests). A _Higher Order Algorithm_ receives as input, a set of outputs from previous executions of other _Algorithms_.
+An _Algorithm's_ job is to decide on the presence of dataset shift based on the data it receives as input. The input differs for the two types of _Algorithms_ that a user can define. The first type is the _Base Algorithm_. In the general case, _Base Algorithms_ receives as input _historical data_ (ie. data that was used to train the ML model) and _live data_ (ie. recent data seen in prediction requests). Here is an example of a _Base Algorithm_ in PDL.
 
 ```
 BaseAlgorithm kolmogorovsmirnov{
@@ -40,10 +40,10 @@ BaseAlgorithm kolmogorovsmirnov{
     parameters pValue
 }
 ```
+A couple of clarifications:
+- As PDL is used for specifying the monitoring process at a high level, the algorithm itself is implemented in a general-purpose programming language and stored in the git repository specified with the _codebase_ keyword. If you visit the [git repository](https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/example-algorithm-repo) of the above _Base Algorithm_, you will observe that it is very sparse. It only contains a single python file with a single function. It contains no logic regarding fetching _historical data_ and _live data_. This is because the data fetching is handled by the _Algorithm Runtime_ that each _Algorithm references. We will explain more about _Algorithm Runtimes_ in the next section. 
 
-- As PDL is used for specifying the monitoring process at a high level, the algorithm itself is implemented in a general-purpose programming language and stored in the git repository specified with the _codebase_ keyword. How the algorithm is implemented depends on the _Algorithm Runtime_ that is used to execute it.
-
-- When an _Algorithm_ is executed it must return a number in [0,n), where n is the number specified with the _severity levels_ keyword. The value 0 should be used to signify the absence of dataset shift and subsequent numbers to signify the presence of dataset shift of increasing severity. Users can specify different _Actions_ to be taken in response to different _severity levels_.
+- When an _Algorithm_ is executed it must return a number in [0,n), where n is the number specified with the _severity levels_ keyword. The value 0 should be used to signify the absence of dataset shift and subsequent numbers to signify the presence of dataset shift of increasing severity.
 
 - An _Algorithm_ can be parameterized. The names of the _Algorithm's_ parameters are specified with the _parameters_ keyword.
 
