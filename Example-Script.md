@@ -1,4 +1,4 @@
-The example script can be seen in the [web editor](http://editor.panoptes.uk/). If it has been changed by another participant you can copy/paste from below.
+The example script can be seen in the [web editor](http://editor.panoptes.uk/). If it has been changed during one of the interviews you can copy/paste from below. There is no need to press save/apply for this step.
 ```
 FeatureStore{
 	features
