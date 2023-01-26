@@ -3,7 +3,7 @@ Welcome to the Panoptes evaluation study. Thank you for participating! The goal 
 To simplify the process, I have included in this wiki all the information that the participants are going to need. Here is the step-by-step process of this study.
 
 ## Step 0: Preparation
-To avoid presenting a lot of material during our meeting, I thought it would be good to create some documentation that the participants can read at their own pace. This way we can hopefully have more time. Below are the links to the relevant material.
+To avoid presenting a lot of material during our meeting, I thought it would be good to create some documentation that the participants can read at their own pace. This way we can hopefully have more time for discussion. Below are the links to the relevant material.
 - [High-level overview of this project.](Introduction)
 - [Explanation of the demo system that we've built to showcase the functionality of Panoptes.](Demo System)
 - [The core concepts of Panoptes Description Language (PDL).](Core Concepts)
@@ -13,6 +13,8 @@ To avoid presenting a lot of material during our meeting, I thought it would be 
 
 ## Step 1: Evaluating comprehensibility
 We would like to evaluate how easy it is for experts in the domain of data science to understand PDL. For this, we have created an example PDL script targeting the call center demo system and a small questionnaire to check that the participants understand what the script defines.
+
+If you feel that you have got a good enough understanding of PDL after reading the documentation, please feel free to fill in the questionnaire right away. I am always available for questions/clarifications through email/Teams. 
 - [Example script](Example Script)
 - Questionnaire
 
