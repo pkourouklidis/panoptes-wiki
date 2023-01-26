@@ -2,6 +2,8 @@ Welcome to the Panoptes evaluation study. Thank you for participating! The goal 
 
 To simplify the process, I have included in this wiki all the information that the participants are going to need. Here is the step-by-step process of this study.
 
+It is kindly requested that you read through the steps and try to go as far as you can before our meeting. I have tried to make the process as straightforward as possible. Your time and effort are greatly appreciated!
+
 ## Step 0: Preparation
 To avoid presenting a lot of material during our meeting, I thought it would be good to create some documentation that the participants can read at their own pace. This way we can hopefully have more time for discussion. Below are the links to the relevant material.
 - [High-level overview of this project.](Introduction)
