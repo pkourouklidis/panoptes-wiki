@@ -12,14 +12,37 @@ The following are the two user interfaces that you can use to interact with the 
 The user dashboard can be accessed [here](https://ui.dashboard.callcentre.panoptes.betalab.rp.bt.com).
 In the user dashboard, one can see information about every call center simulation that has been run so far.
 
-IMAGE
+![dashboard2](uploads/4e81892ba30f30b7fddb0a3a4ab963f1/dashboard2.png)
 
-explanation
+In the various widgets included in the user dashboard we can see the following:
+- A time-series graph with the wait time of each call
+- A time-series graph with the service time of each call
+- Information about the total calls in the simulation run we are seeing with a breakdown between calls with resolved and unresolved issues
+- Importantly, a graph with the predicted customers' happiness from the deployed ML model. We can click on that to also see the actual happiness of the customer for each call.
+- The predictor status widget can also be clicked to show the results of every dataset shift detection execution so far.
 
 ## Simulation Dashboard
 The simulation dashboard can be accessed [here](https://ui.digitaltwin.callcentre.panoptes.betalab.rp.bt.com).
 In the simulation dashboard, one can start and stop simulation runs with specific configurations.
 
-IMAGE
+![digitialTwin2](uploads/51559c91fae615294896e29ec9ac81df/digitialTwin2.png)
 
-explanation
+Here is what the various sliders mean:
+
+### Call Configuration
+- Call interval: How quickly new calls are being made to our call center
+- Average Call Difficulty: Affects the ratio of easy to hard calls. Hard calls are more likely to be left unresolved and that will affect the customer's happiness.
+- Wait Time Until Call Gets Bounced: How long customers are willing to wait in the queue before deciding to hang up.
+- Average Service Time: How long customers speak to the call center worker after waiting in the queue.
+
+### Customer Configuration
+- Expected Wait Time: The customers' expectations regarding wait times. If their actual wait time exceeds their expectations they are more likely to be left unhappy.
+- Average Patience During Waiting: Extra parameter that influences whether customers are willing to accept long waiting times.
+- Average Patience During Service: Parameter that influences whether customers are willing to accept long service times.
+- Average Understanding for Failure: Parameter that influences how likely it is for customers to be left unhappy if their issue is left unresolved after calling.
+
+### Worker Configuration
+- Number of Workers: More call center workers will result in lower waiting times for customers.
+- Average Worker Skill: Ratio of skilled to unskilled workers. Skilled workers are more likely to resolve customers' issues.
+- Average Worker Speed: Ratio of fast to slow workers. Fast workers finish the average call quicker resulting in lower service times.
+
