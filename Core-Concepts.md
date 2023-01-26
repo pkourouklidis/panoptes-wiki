@@ -47,19 +47,36 @@ A couple of clarifications:
 
 - An _Algorithm_ can be parameterized. The names of the _Algorithm's_ parameters are specified with the _parameters_ keyword.
 
+The second type of _Algorithm_ is the _HigherOrderAlgorithm_. This type of _Algorithm_ always receives as input the results from a series of executions of another _Algorithm_. Here is an example of a _Higher Order Algorithm_ in PDL.
+
+```
+HigherOrderAlgorithm exponential-moving-average{
+    codebase "blah"
+    runtime higherOrderPythonFunction
+    parameters 
+        alpha,
+        threshold
+    severity levels 2
+}
+```
+
+As we can see, it is very similar to the _Base Algorithm_, it just references a different _Algorithm Runtime_.
+
 ## Algorithm Runtime
-An _Algorithm Runtime_ represents the capability of the underlying platform to execute _Algorithms_ that are implemented using a specific technology (e.g. An _Algorithm_ implemented as a Python function). As with _Algorithms_, there are two kinds of _Algorithm Runtimes_, _Base Algorithm Runtimes_ and _Higher Order Algorithm Runtimes_.
+The job of an _Algorithm Runtime_ is to fetch all the data that an _Algorithm_ needs for its execution, call the _Algorithm_, receive the result of the execution and forward it to the component that requested the execution of the _Algorithm_. All of this functionality is implemented in a general-purpose language (e.g Python). The only thing necessary is a simple "placeholder" that we can reference when we add _Algorithms_ in our PDL scripts. Here are two examples of the two types of _Algorithm Runtimes_ that we can define (corresponding to the two types of _Algorithms_).
 
 ```
 BaseAlgorithmRuntime pythonFunction
 ```
 
 ```
-HigherOrderAlgorithmRuntime HoPythonFunction
+HigherOrderAlgorithmRuntime higherOrderPythonFunction
 ```
 
 ## Algorithm Execution
-An _Algorithm_ can detect dataset shift in a variety of diffent scenarios. On the other hand, an _Algorithm Execution_ is the application of an _Algorithm_ in a specific scenario. 
+So far we have seen that we can create _Algorithms_ to detect dataset shift based on their input. In addition to that, we also need a way to specify which data the _Algorithms_ should operate on and what should happen if dataset shift is detected. In this way, we can reuse an _Algorithm_ to detect dataset shift for multiple deployed models.
+
+For this purpose, we can create _Base Algorithm Executions_ and _Higher Order Algorithm Executions_. Here is an example of a _Base Algorithm Execution_.
 
 ```
 BaseAlgorithmExecution wait_duration_shift{
@@ -71,9 +88,9 @@ BaseAlgorithmExecution wait_duration_shift{
 }
 ```
 
-For _Base Algorithm Executions_, the user has to specify:
+As we can see for _Base Algorithm Executions_, we can specify the following:
 - The _Algorithm_ to be executed.
-- Which features/predictions/labels will be used as input from the historic and the live dataset. It is not necessary to include data from both sets. It is    
+- The features/predictions/labels that will be used as input from the _historical_ and the _live data_. **Beware**, it is not necessary to include data from both sets. Some _Algorithms_ might be fine to operate only on _live data_. We can for example calculate the accuracy/recall/f1 score/etc. on recent data of a deployed model by using as input the prediction and the labels in the _live data_.    
 - A mapping from the potential results of the _Algorithm Execution_ to the _Action_ that should be triggered.
 - Values for the parameters of the _Algorithm_ if there are any.
 
