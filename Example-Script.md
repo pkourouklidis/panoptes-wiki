@@ -1,10 +1,12 @@
 The example script can be seen in the [web editor](http://editor.panoptes.uk/). If it has been changed during one of the interviews you can copy/paste from below. There is no need to press save/apply for this step.
 ```
 FeatureStore{
+    entities
+        call{keys callID}
 	features
-	    wait_duration:continuous,
-	    service_duration:continuous,
-	    is_solved:categorical
+	    wait_duration:continuous{requires entities call},
+	    service_duration:continuous{requires entities call},
+	    is_solved:categorical{requires entities call}
 	labels 
 	    is_happy:categorical
 }
@@ -43,6 +45,7 @@ Action retrain{
 }
 
 Deployment callcenter{
+        inputs call.callID
 	model callcenter-tree
 	
 	BaseAlgorithmExecution service_duration_shift{
