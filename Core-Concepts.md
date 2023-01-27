@@ -154,6 +154,9 @@ The above trigger, for example, specifies that the _Algorithm Execution_ *exec1*
 - There have been at least 100 inference requests, 100 inference responses and 100 ground truth labels since the last time this trigger has gone off.
 - There has been at least one day since the last time this trigger has gone off.
 
+A couple of clarifications:
+- There are four types of events that can make a trigger go off. The first two are when there is a new data point that can be used as an ML model input (i.e sample) and when the ML model makes a prediction on that sample. In an online inference scenario, these two events will come in pairs. But because of the possibility of batch inference, where predictions are made all at once on a set of samples, PDL users can define triggers based on either event.
+
 ## Deployment
 A _Deployment_ groups together a deployed ML model and all of the information needed to monitor its performance. _Algorithm Executions_, _Action Executions_, and _triggers_ can only be defined within a _Deployment_.
 
