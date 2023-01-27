@@ -10,7 +10,7 @@ To avoid presenting a lot of material during our meeting, I thought it would be 
 - [Explanation of the demo system that we've built to showcase the functionality of Panoptes.](Demo System)
 - [The core concepts of Panoptes Description Language (PDL).](Core Concepts)
 - [Additional features of PDL related to validity checks.](Validity Checks)
-- [Adding custom algorithms to detect dataset shift.](Available Algorithm Runtimes)
+- [Adding custom algorithms to detect dataset shift.](Algorithm Runtimes)
 - [How Panoptes integrates with the underlying platform (optional).](Platform Integration)
 
 ## Step 1: Evaluating comprehensibility
