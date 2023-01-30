@@ -1,4 +1,4 @@
-The example script can be seen in the [web editor](http://editor.panoptes.uk/). If it has been changed during one of the interviews you can copy/paste from below. There is no need to press save/apply for this step.
+The example script can be seen with syntax highlighting in the [web editor](http://editor.panoptes.uk/). Please copy/paste it from below to make sure you are looking at the right version. There is no need to press apply for this step.
 ```
 FeatureStore{
     entities
@@ -19,7 +19,7 @@ Model callcenter-tree{
 
 BaseAlgorithmRuntime pythonFunction
 
-BaseAlgorithm kolmogorovsmirnov{
+BaseAlgorithm kolmogorov-smirnov{
 	codebase "https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/example-algorithm-repo"
 	runtime pythonFunction
 	severity levels 2
@@ -27,7 +27,7 @@ BaseAlgorithm kolmogorovsmirnov{
 	parameters pValue:Real
 }
 
-BaseAlgorithm accuracycheck{
+BaseAlgorithm accuracy-check{
 	codebase "https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/accuracy-algorithm-repo"
 	runtime pythonFunction
 	severity levels 2
@@ -41,7 +41,7 @@ HigherOrderAlgorithm exponential-moving-average{
     runtime higherOrderPythonFunction
     parameters 
         alpha:Real,
-        mandatory threshold
+        mandatory threshold:Real
     severity levels 2
 }
 
@@ -59,19 +59,27 @@ Deployment callcenter{
         inputs call.callID
 	model callcenter-tree
 	
-	BaseAlgorithmExecution service_duration_shift{
-		algorithm kolmogorovsmirnov
+	BaseAlgorithmExecution service-duration-shift{
+		algorithm kolmogorov-smirnov
 		live data service_duration
 		historical data service_duration
 		actions 1->emailMe
-		parameter values pValue = "0.05"
+		parameter values pValue = 0.05
 	}
 	
 	BaseAlgorithmExecution callcenter-accuracy{
 		algorithm accuracycheck
 		live data is_happy, callcenter-tree.hapiness_prediction
-		actions 1->emailMe
-		parameter values threshold = "0.80"
+		parameter values threshold = 0.80
+	}
+
+	HigherOrderAlgorithmExecution ema-accuracy{
+	    algorithm exponential-moving-average
+	    observed execution callcenter-accuracy
+	    min observations 3
+	    max  observations 3
+	    parameter values alpha = 0.5, threshold = 0.8
+	    actions 1->emailMe
 	}
 	
 	ActionExecution emailMe{
@@ -85,14 +93,14 @@ Deployment callcenter{
 	        containerImage="registry.docker.nat.bt.com/panoptes/callcenter-model-training:latest"
 	}
 	
-	/*Trigger t1{
+	Trigger t1{
 	every
-	100 samples
+	1000 samples
 	or
 	every
 	one day
 	execute service_duration_shift
-	}*/
+	}
 	
 	Trigger t2{
 	every
