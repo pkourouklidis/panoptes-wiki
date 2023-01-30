@@ -3,4 +3,5 @@ Please only fill in the questionnaire **after** carefully reading the documentat
 - Email: panagiotis.kourouklidis@bt.com
 
 ## Questions
-1. What is the name of the ML model that the callcenter _Deployment_ uses?
+PDL keywords are in _italics_. Identifiers are in **bold**
+1. What is the name of the _Model_ that the **callcenter** _Deployment_ uses?
