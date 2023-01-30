@@ -95,7 +95,7 @@ Deployment callcenter{
 		parameter values email=panagiotis.kourouklidis@bt.com
 	}
 	
-	ActionExecution retrainCallcenterLinear{
+	ActionExecution retrainCallcenter{
 	    action retrain
 	    parameter values ioNames="wait_duration,service_duration,is_solved,is_happy",  
 	        containerImage="registry.docker.nat.bt.com/panoptes/callcenter-model-training:latest"
