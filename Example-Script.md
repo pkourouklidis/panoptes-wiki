@@ -13,7 +13,13 @@ FeatureStore{
 
 Model callcenter-tree{
     uses wait_duration, service_duration, is_solved
-    outputs hapiness_prediction
+    outputs happiness_prediction
+    predicts is_happy
+}
+
+Model callcenter-tree{
+    uses wait_duration, service_duration, is_solved
+    outputs happiness_prediction
     predicts is_happy
 }
 
@@ -69,7 +75,7 @@ Deployment callcenter{
 	
 	BaseAlgorithmExecution callcenter-accuracy{
 		algorithm accuracy-check
-		live data is_happy, hapiness_prediction
+		live data is_happy, happiness_prediction
 		parameter values threshold = 0.80
 	}
 
