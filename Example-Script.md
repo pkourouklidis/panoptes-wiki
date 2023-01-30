@@ -56,7 +56,7 @@ Action retrain{
 }
 
 Deployment callcenter{
-        inputs call.callID
+        inputs callID
 	model callcenter-tree
 	
 	BaseAlgorithmExecution service-duration-shift{
@@ -69,7 +69,7 @@ Deployment callcenter{
 	
 	BaseAlgorithmExecution callcenter-accuracy{
 		algorithm accuracy-check
-		live data is_happy, callcenter-tree.hapiness_prediction
+		live data is_happy, hapiness_prediction
 		parameter values threshold = 0.80
 	}
 
