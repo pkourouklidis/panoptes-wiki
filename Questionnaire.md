@@ -19,4 +19,5 @@ PDL keywords are in _italics_. Identifiers/names are in **bold**
 1. Could we have used the _Feature_ **is_solved** as input to the **service-duration-shift** _AlgorithmExecution_, without causing any warnings/errors? Please justify.
 1. What are the _inputs_ of the **callcenter** _Deployment_?
 1. Based on the _inputs_ of the **callcenter** _Deployment_, can we substitute the current _Model_ that is being used with **callcenter-alternative**, without causing any warnings/errors? If yes, please justify, if no please provide with the modification required to the _Deployment_ to remove the warnings/errors.
-1. In a scenario where one day has passed since _trigger_ **t1** has been activated but the _Deployment_ has only served 900 requests, will _AlgorithmExecution_ **service-duration-shift** execute?
+1. In a scenario where one day has passed since _trigger_ **t1** has been activated but the _Deployment_ has only served 900 requests, will _AlgorithmExecution_ **service-duration-shift** run? Please justify.
+1. In a scenario where no _AlgorithmExecution_ has been run yet and **callcenter-accuracy** has run for the first time, will _AlgorithmExecution_ **ema-accuracy** run? Please justify.
