@@ -3,12 +3,14 @@ The example script can be seen with syntax highlighting in the [web editor](http
 FeatureStore{
     entities
         call{keys callID}
-	features
-	    wait_duration:continuous{requires entities call},
-	    service_duration:continuous{requires entities call},
-	    is_solved:categorical{requires entities call}
-	labels 
-	    is_happy:categorical
+    request data additional_data
+    features
+        wait_duration:continuous{requires entities call},
+	service_duration:continuous{requires entities call},
+	is_solved:categorical{requires entities call},
+        additional_feature{requires request data additional_data}
+    labels 
+	is_happy:categorical
 }
 
 Model callcenter-tree{
