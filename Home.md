@@ -14,7 +14,7 @@ To avoid presenting a lot of material during our meeting, I thought it would be 
 - [How Panoptes integrates with the underlying platform (optional).](Platform Integration)
 
 ## Step 1: Evaluating comprehensibility
-We would like to evaluate how easy it is for experts in the domain of data science to understand PDL. For this, we have created an example PDL script targeting the call center demo system and a small questionnaire to check that the participants understand what the script defines.
+We would like to evaluate how easy it is for data scientists to understand PDL scripts. For this, we have created an example PDL script targeting the call center demo system and a small questionnaire to check that the participants understand what the script defines.
 
 If you feel that you have got a good enough understanding of PDL after reading the documentation, please feel free to fill in the questionnaire right away. I am always available for questions/clarifications through email/Teams. 
 - [Example script](Example Script)
