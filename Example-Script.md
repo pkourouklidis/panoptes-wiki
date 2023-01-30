@@ -34,6 +34,17 @@ BaseAlgorithm accuracycheck{
 	parameters threshold:Real
 }
 
+HigherOrderAlgorithmRuntime higherOrderPythonFunction
+
+HigherOrderAlgorithm exponential-moving-average{
+    codebase "https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/ema-algorithm-repo"
+    runtime higherOrderPythonFunction
+    parameters 
+        alpha:Real,
+        mandatory threshold
+    severity levels 2
+}
+
 Action email{
 	parameters mandatory email:String
 }
