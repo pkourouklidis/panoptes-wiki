@@ -18,7 +18,7 @@ We would like to evaluate how easy it is for data scientists to understand PDL s
 
 If you feel that you have got a good enough understanding of PDL after reading the documentation, please feel free to fill in the questionnaire right away. I am always available for questions/clarifications through email/Teams. 
 - [Example script](Example Script)
-- Questionnaire
+- [Questionnaire](Questionnaire)
 
 ## Step 2: Evaluating usability
 We would also like to evaluate how easy it is for users to use PDL to specify new behaviors. For this, we start by showcasing the behavior of the system with the example script that is already provided.
