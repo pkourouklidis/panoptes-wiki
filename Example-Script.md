@@ -46,7 +46,7 @@ HigherOrderAlgorithm exponential-moving-average{
 }
 
 Action email{
-	parameters mandatory email:String
+    parameters mandatory email:String
 }
 
 Action retrain{
