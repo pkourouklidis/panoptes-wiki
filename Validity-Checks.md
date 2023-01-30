@@ -60,7 +60,7 @@ FeatureStore{
         call{keys callID}
     features
 	wait_duration{requires entities call},
-	service_duration{requires entities call},
+	service_duration{requires entities call}
     labels 
 	is_happy
 }
