@@ -68,7 +68,7 @@ Deployment callcenter{
 	}
 	
 	BaseAlgorithmExecution callcenter-accuracy{
-		algorithm accuracycheck
+		algorithm accuracy-check
 		live data is_happy, callcenter-tree.hapiness_prediction
 		parameter values threshold = 0.80
 	}
@@ -99,7 +99,7 @@ Deployment callcenter{
 	or
 	every
 	one day
-	execute service_duration_shift
+	execute service-duration-shift
 	}
 	
 	Trigger t2{
