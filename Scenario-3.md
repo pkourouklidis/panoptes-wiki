@@ -4,7 +4,7 @@ In this scenario, we want to run a simulation with concept shift. In essence, th
 In this scenario, we ask the participants to modify the script from scenario 2 so that the concept shift is detected and we receive an email notification. The participants can use the _accuracycheck_ algorithm or implement their own algorithm for the _pythonFunction_ runtime.
 
 ## Simulation settings
-Apply the following settings in the [simulation dashboard](https://ui.digitaltwin.callcentre.panoptes.betalab.rp.bt.com/) and let it run for 100 calls:
+Apply the following settings in the [simulation dashboard](https://ui.digitaltwin.callcentre.panoptes.betalab.rp.bt.com/):
 
 Call Interval: minimum
 
@@ -29,6 +29,8 @@ Number of Workers: 15
 Average Worker Skill: maximum
 
 Average Worker Speed: maximum
+
+After applying the settings, start the simulation and let it run for 100 calls. The number of calls served can be seen in the user dashboard.
 
 ## Expected Result
 Due to the concept shift, the performance of the model will be significantly lower. An algorithm execution using the _accuracycheck_ algorithm or similar should detect this and send us an email notification.
