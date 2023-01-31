@@ -1,7 +1,4 @@
-This page provides an overview of the core concepts that Panoptes uses and the PDL syntax used to express them. The [web editor](http://editor.panoptes.uk/) provides syntax highlighting and error checking that can help you get familiar with PDL.
-
-## Platform
-A _Platform_ describes the underlying infrastructure/environment used for the training, deployment, and monitoring of ML models. Every PDL script maps to exactly one _Platform_ instance so there's no need to explicitly define it.
+To illustrate the core concepts of Panoptes uses we will follow the scenario of the [demo system](Demo System) and build a PDL script step by step. The [web editor](http://editor.panoptes.uk/) provides syntax highlighting and error checking that can help you along the way.
 
 ## Feature Store
 Every _Platform_ must contain a _Feature Store_ which stores information about all available _Features_ and _Labels_. 
