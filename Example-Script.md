@@ -19,9 +19,9 @@ Model callcenter-tree{
     predicts is_happy
 }
 
-Model callcenter-tree{
-    uses wait_duration, service_duration, is_solved
-    outputs happiness_prediction
+Model callcenter-alternative{
+    uses wait_duration, service_duration, is_solved, additional_feature
+    outputs happiness_prediction_alt
     predicts is_happy
 }
 
