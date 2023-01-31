@@ -58,7 +58,7 @@ def detector(level, raw, parameters):
     result = 1 if ema < threshold else 0
     return result, ema
 ```
-The function receives three arguments. The arguments `level` and `raw` are the discretized and raw results of the observed _Algorithm Execution_ in chronological order (most recent result first). The argument `parameters` is the same as in _Python Function Runtime_.
+The function receives three arguments. The arguments `level` and `raw` are simple Python lists that contain the discretized and raw results of the observed _Algorithm Execution_ in chronological order (most recent result first). The argument `parameters` is the same as in _Python Function Runtime_.
 
 As our detector doesn't use any external Python packages, the requirements.txt file will be empty. 
 
