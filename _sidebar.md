@@ -4,4 +4,5 @@
 - [Core Concepts](Core Concepts)
 - [Validity Checks](Validity Checks)
 - [Available Algorithm Runtimes](Algorithm Runtimes)
+- [Available Actions](Actions)
 - [Platform Integration](Platform Integration)
