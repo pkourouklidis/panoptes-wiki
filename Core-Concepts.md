@@ -194,6 +194,7 @@ Deployment callcenter{
         execute wait_duration_shift
     }
 }
+```
 
 The above trigger, for example, specifies that the _Algorithm Execution_ *exec1* will be triggered if either of the following two alternatives is true:
 - There have been at least 100 inference requests, 100 inference responses and 100 ground truth labels since the last time this trigger has gone off.
