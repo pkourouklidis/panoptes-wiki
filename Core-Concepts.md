@@ -1,9 +1,22 @@
 To illustrate the core concepts of Panoptes uses we will follow the scenario of the [demo system](Demo System) and build a PDL script step by step. The [web editor](http://editor.panoptes.uk/) provides syntax highlighting and error checking that can help you along the way.
 
-## Feature Store
-Every _Platform_ must contain a _Feature Store_ which stores information about all available _Features_ and _Labels_. 
-
+## Preliminary concepts
+We will start by defining a _Deployment_ which groups together all of the information needed to monitor the performance of a deployed ML model.
 ```
+Deployment callcenter{
+    model callcenter-tree
+}
+```
+The above PDL snippet defines a _Deployment_ named _callcenter_ and specifies that this _Deployment_ is using the _callcenter-tree_ model to produce predictions about customers' happiness.
+
+Since we reference an ML model called _callcenter-tree_ we also need to define it.
+```
+Model callcenter-tree{
+    uses wait_duration, service_duration, is_solved
+    outputs hapiness_prediction
+    predicts is_happy
+}
+
 FeatureStore{
     features
         wait_duration,
@@ -13,30 +26,19 @@ FeatureStore{
         is_happy
 }
 ```
+In the PDL snippet above, we have defined a _Model_ as well as a _FeatureStore_ that holds the _Features_ and _Labels_ that the _Model_ references. As we can see the _callcenter-tree_ _Model_ uses three _Features_ as inputs, produces a _Prediction_ named _happiness_prediction_ that predicts the _Label_ _is_happy_.
 
-## Model
-To describe trained ML models that are ready for deployment, users can create _Model_ instances.
-
+## Defining Dataset-Shift-Detection Algorithms
+We will now start defining our dataset-shift-detecting process. We will start by defining an _Algorithm_.
 ```
-Model callcenter-tree{
-    uses wait_duration, service_duration, is_solved
-    outputs hapiness_prediction
-    predicts is_happy
-}
-```
-
-
-## Algorithm
-An _Algorithm's_ job is to decide on the presence of dataset shift based on the data it receives as input. The input differs for the two types of _Algorithms_ that a user can define. The first type is the _Base Algorithm_. In the general case, _Base Algorithms_ receives as input _historical data_ (ie. data that was used to train the ML model) and _live data_ (ie. recent data seen in prediction requests). Here is an example of a _Base Algorithm_ in PDL.
-
-```
-BaseAlgorithm kolmogorovsmirnov{
+BaseAlgorithm kolmogorov-smirnov{
     codebase "https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/example-algorithm-repo"
     runtime pythonFunction
     severity levels 2
     parameters pValue
 }
 ```
+An _Algorithm's_ job is to decide on the presence of dataset shift based on the data it receives as input. The input differs for the two types of _Algorithms_ that a user can define. The first type is the _Base Algorithm_. In the general case, _Base Algorithms_ receives as input _historical data_ (ie. data that was used to train the ML model) and _live data_ (ie. recent data seen in prediction requests). The above is an example of a _Base Algorithm_ in PDL.
 
 The referenced [git repository](https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/example-algorithm-repo) includes the following files:
 
@@ -79,7 +81,7 @@ HigherOrderAlgorithm exponential-moving-average{
 As we can see, it is very similar to the _Base Algorithm_, it just references a different _Algorithm Runtime_.
 
 ## Algorithm Runtime
-The job of an _Algorithm Runtime_ is to fetch all the data that an _Algorithm_ needs for its execution, call the _Algorithm_, receive the result of the execution and forward it to the component that requested the execution of the _Algorithm_.
+As seen in the previous PDL snippets, every _Algorithm_ definition needs to reference an _Algorithm Runtime_. The job of an _Algorithm Runtime_ is to fetch all the data that an _Algorithm_ needs for its execution, call the _Algorithm_, receive the result of the execution and forward it to the component that requested the execution of the _Algorithm_.
 
 That being said, data scientists **do not** need to implement _Algorithm Runtimes_ themselves. They can choose one of the [available Algorithm Runtimes](Algorithm Runtimes) that fits their needs. The only thing necessary is a simple "placeholder" that we can reference when we add _Algorithms_ in our PDL scripts. Here are two examples of the two types of _Algorithm Runtimes_ (corresponding to the two types of _Algorithms_).
 
@@ -91,18 +93,22 @@ BaseAlgorithmRuntime pythonFunction
 HigherOrderAlgorithmRuntime higherOrderPythonFunction
 ```
 
-## Algorithm Execution
-So far we have seen that we can create _Algorithms_ to detect dataset shift based on the received input. In addition to that, we also need a way to specify which data the _Algorithms_ should receive as input and what should happen if dataset shift is detected. This way, we can reuse an _Algorithm_ to detect dataset shift for multiple deployed models.
+## Using an Algorithm for Dataset Shift Detection
+So far we have seen that we can create _Algorithms_ that detect dataset shift based on the received input. In addition to that, we also need a way to specify which data the _Algorithms_ should receive as input and what should happen if dataset shift is detected. This way, we can reuse an _Algorithm_ to detect dataset shift for multiple deployed models.
 
-For this purpose, we can create _Base Algorithm Executions_ and _Higher Order Algorithm Executions_. Here is an example of a _Base Algorithm Execution_.
+For this purpose, we can add to our _Deployment_, _Base Algorithm Executions_ and _Higher Order Algorithm Executions_. Here is an example of a _Base Algorithm Execution_.
 
 ```
-BaseAlgorithmExecution wait_duration_shift{
-    algorithm kolmogorovsmirnov
-    live data service_duration
-    historical data service_duration
-    actions 1->emailMe
-    parameter values pValue = 0.05
+Deployment callcenter{
+    model callcenter-tree
+
+    BaseAlgorithmExecution wait_duration_shift{
+        algorithm kolmogorov-smirnov
+        live data service_duration
+        historical data service_duration
+        actions 1->emailMe
+        parameter values pValue = 0.05
+    }
 }
 ```
 
@@ -111,6 +117,34 @@ As we can see for _Base Algorithm Executions_, we can specify the following:
 - The features/predictions/labels that will be used as input from the _historical data_ and the _live data_. **Beware**, it is not necessary to include data from both sets. Some _Algorithms_ might be fine to operate only on _live data_. We can for example calculate the accuracy/recall/f1 score that a deployed model has achieved on recent data by using as input the prediction and the labels in the _live data_.    
 - A mapping from the potential results of the _Algorithm Execution_ to the _Action Execution_ that should be triggered.
 - Values for the parameters of the _Algorithm_ if there are any.
+
+Let's now also add a _HigherOrderAlgorithmExecution_ in our _Deployment_.
+```
+Deployment callcenter{
+    model callcenter-tree
+
+    BaseAlgorithmExecution wait_duration_shift{
+        algorithm kolmogorov-smirnov
+        live data service_duration
+        historical data service_duration
+        actions 1->emailMe
+        parameter values pValue = 0.05
+    }
+
+    HigherOrderAlgorithmExecution ema-wait_duration_shift{
+	algorithm exponential-moving-average
+	observed execution wait_duration_shift
+	min observations 3
+	max  observations 5
+	parameter values alpha = 0.5, threshold = 0.8
+	actions 1->emailMe
+	}
+}
+```
+As we can see it is quite similar to a _BaseAlgorithmExecution_ with a couple of exceptions:
+- Instead of defining which features/predictions/labels should be used as input, we specify an _AlgorithmExecution_ whose execution results will be used as inputs.
+- We specify a minimum number of execution results of the observed _AlgorihtmExecution_ that need to be available for the _HigherOrderAlgorithmExecution_ to start executing.
+- We specify a maximum number of results of the observed_AlgorithmExecution_ that will be used as input for the _HigherOrderAlgorithmExecution_. In the example above, the latest 5 execution results of the wait_duration_shift _BaseAlgorithmExecution_ will be used as input for the ema-wait_duration_shift _HigherOrderAlgorithmExecution_.
 
 ## Action
 An _Action_ is a functionality of the underlying platform that can be triggered in response to dataset shift. For example, when an _Algorithm Execution_ indicates the presence of dataset shift, we could send an email notification.
@@ -133,33 +167,10 @@ ActionExecution emailMe{
 }
 ```
 ## Trigger
-A _Trigger_ specifies how often an Algorithm execution should be triggered.
-
-```
-Trigger t1{
-    every
-    100 samples
-    100 predictions
-    100 labels
-    or
-    every
-    one day
-    execute wait_duration_shift
-}
-```
-The above trigger, for example, specifies that the _Algorithm Execution_ *exec1* will be triggered if either of the following two alternatives is true:
-- There have been at least 100 inference requests, 100 inference responses and 100 ground truth labels since the last time this trigger has gone off.
-- There has been at least one day since the last time this trigger has gone off.
-
-A couple of clarifications:
-- There are four types of events that can make a trigger go off. The first two are when there is a new data point that can be used as an ML model input (i.e sample) and when the ML model makes a prediction on that sample. In an online inference scenario, these two events will come in pairs. But because of the possibility of batch inference, where predictions are made all at once on a set of samples, PDL users can define triggers based on either event.
-
-## Deployment
-A _Deployment_ groups together a deployed ML model and all of the information needed to monitor its performance. _Algorithm Executions_, _Action Executions_, and _triggers_ can only be defined within a _Deployment_.
-
+A _Trigger_ specifies how often an Algorithm execution should be triggered. Let's add it to our _Deployment_.
 ```
 Deployment callcenter{
-    model callcenter-linear
+    model callcenter-tree
     
     BaseAlgorithmExecution wait_duration_shift{
         algorithm kolmogorovSmirnov
@@ -174,12 +185,6 @@ Deployment callcenter{
         parameter values email=panagiotis.kourouklidis@bt.com
     }
     
-    ActionExecution retrainCallcenterLinear{
-        action retrainAction
-        parameter values ioNames="wait_duration,service_duration,is_happy",  
-            containerImage="registry.docker.nat.bt.com/panoptes/callcenter-model-training:latest"
-    }
-    
     Trigger t1{
         every
         100 samples
@@ -189,4 +194,10 @@ Deployment callcenter{
         execute wait_duration_shift
     }
 }
-```
+
+The above trigger, for example, specifies that the _Algorithm Execution_ *exec1* will be triggered if either of the following two alternatives is true:
+- There have been at least 100 inference requests, 100 inference responses and 100 ground truth labels since the last time this trigger has gone off.
+- There has been at least one day since the last time this trigger has gone off.
+
+A couple of clarifications:
+- There are four types of events that can make a trigger go off. The first two are when there is a new data point that can be used as an ML model input (i.e sample) and when the ML model makes a prediction on that sample. In an online inference scenario, these two events will come in pairs. But because of the possibility of batch inference, where predictions are made all at once on a set of samples, PDL users can define triggers based on either event.
