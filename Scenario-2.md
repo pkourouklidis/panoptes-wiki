@@ -82,7 +82,7 @@ Deployment callcenter{
 }
 ```
 ## Simulation settings
-Apply the following settings in the [simulation dashboard](https://ui.digitaltwin.callcentre.panoptes.betalab.rp.bt.com/) and let it run for 100 calls:
+Apply the following settings in the [simulation dashboard](https://ui.digitaltwin.callcentre.panoptes.betalab.rp.bt.com/):
 
 Call Interval: minimum
 
@@ -107,6 +107,8 @@ Number of Workers: 20
 Average Worker Skill: maximum
 
 Average Worker Speed: maximum
+
+After applying the settings, start the simulation and let it run for 100 calls. The number of calls served can be seen in the user dashboard.
 
 ## Expected Result
 This simulation run produces service times that are significantly higher compared to the ones in the training set. The service_duration_shift algorithm execution should detect this and send us an email notification.
