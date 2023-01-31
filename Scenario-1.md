@@ -109,7 +109,7 @@ Average Worker Skill: maximum
 
 Average Worker Speed: maximum
 
-After applying the settings start the simulation and let it run for 100 calls. The number of calls served can be seen in the user dashboard.
+After applying the settings start, the simulation and let it run for 100 calls. The number of calls served can be seen in the user dashboard.
 
 ## Expected Result
 This simulation run produces data that are similar to the ones used to train the ML model. Therefore there will be no dataset shift detected and no email notification.
