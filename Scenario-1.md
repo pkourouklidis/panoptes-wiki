@@ -20,7 +20,7 @@ Model callcenter-tree{
 
 BaseAlgorithmRuntime pythonFunction
 
-BaseAlgorithm kolmogorovsmirnov{
+BaseAlgorithm kolmogorov-smirnov{
 	codebase "https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/example-algorithm-repo"
 	runtime pythonFunction
 	severity levels 2
@@ -28,7 +28,7 @@ BaseAlgorithm kolmogorovsmirnov{
 	parameters pValue:Real
 }
 
-BaseAlgorithm accuracycheck{
+BaseAlgorithm accuracy-check{
 	codebase "https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/accuracy-algorithm-repo"
 	runtime pythonFunction
 	severity levels 2
@@ -49,18 +49,18 @@ Deployment callcenter{
 	model callcenter-tree
 	
 	BaseAlgorithmExecution service_duration_shift{
-		algorithm kolmogorovsmirnov
+		algorithm kolmogorov-smirnov
 		live data service_duration
 		historical data service_duration
 		actions 1->emailMe
-		parameter values pValue = "0.05"
+		parameter values pValue = 0.05
 	}
 	
 	BaseAlgorithmExecution callcenter-accuracy{
-		algorithm accuracycheck
-		live data is_happy, callcenter-tree.happiness_prediction
+		algorithm accuracy-check
+		live data is_happy, happiness_prediction
 		actions 1->emailMe
-		parameter values threshold = "0.80"
+		parameter values threshold = 0.80
 	}
 	
 	ActionExecution emailMe{
@@ -68,7 +68,7 @@ Deployment callcenter{
 		parameter values email=panagiotis.kourouklidis@bt.com
 	}
 	
-	ActionExecution retrainCallcenterLinear{
+	ActionExecution retrainCallcenter{
 	    action retrain
 	    parameter values ioNames="wait_duration,service_duration,is_solved,is_happy",  
 	        containerImage="registry.docker.nat.bt.com/panoptes/callcenter-model-training:latest"
