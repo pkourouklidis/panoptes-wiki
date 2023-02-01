@@ -15,7 +15,7 @@ PDL keywords are in _italics_. Identifiers/names are in **bold**
 1. Which _parameters_ does the **retrain** _Action_ define?
 1. In the **retrainCallcenter** _ActionExecution_ can we omit providing a value to the **ioNames** _parameter_? Please justify.
 1. In the **service-duration-shift** _AlgorithmExecution_, could we have provided the value "one"(as in the letters o-n-e not the number 1) for the **pValue** _parameter_? Please justify.
-1. What is the type of the _Feature_ used as input(live/historical data) for the **service-duration-shift** _AlgorithmExecution_?
+1. What is the _Feature type_ used as input(live/historical data) for the **service-duration-shift** _AlgorithmExecution_?
 1. Could we have used the _Feature_ **is_solved** as input to the **service-duration-shift** _AlgorithmExecution_, without causing any warnings/errors? Please justify.
 1. What are the _inputs_ of the **callcenter** _Deployment_?
 1. Based on the _inputs_ of the **callcenter** _Deployment_, can we substitute the current _Model_ that is being used with **callcenter-alternative**, without causing any warnings/errors? If yes, please justify, if no please provide with the modification required to the _Deployment_ to remove the warnings/errors.
