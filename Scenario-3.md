@@ -6,31 +6,24 @@ In this scenario, we ask the participants to modify the script from scenario 2 s
 ## Simulation settings
 Apply the following settings in the [simulation dashboard](https://ui.digitaltwin.callcentre.panoptes.betalab.rp.bt.com/):
 
-Call Interval: minimum
+### Call Configuration
+- Call Interval: minimum
+- Average Call Difficulty: minimum
+- Wait Time Until Call Gets Bounced: maximum
+- Average Service Time: 5s
 
-Average Call Difficulty: minimum
+### Customer Configuration
+- Expected Wait Time: minimum
+- Average Patience During Waiting: maximum (fully impatient)
+- Average Patience During Service: maximum (fully impatient)
+- Average Understanding for Failure: maximum (fully intolerant)
 
-Wait Time Until Call Gets Bounced: maximum
+### Worker Configuration
+- Number of Workers: 15
+- Average Worker Skill: maximum
+- Average Worker Speed: maximum
 
-Average Service Time: 5s
-
-
-Expected Wait Time: minimum
-
-Average Patience During Waiting: maximum (fully impatient)
-
-Average Patience During Service: maximum (fully impatient)
-
-Average Understanding for Failure: maximum (fully intolerant)
-
-
-Number of Workers: 15
-
-Average Worker Skill: maximum
-
-Average Worker Speed: maximum
-
-After applying the settings, start the simulation and let it run for 100 calls. The number of calls served can be seen in the user dashboard.
+After applying the settings, start the simulation and let it run for 100 calls. The number of calls served can be seen in the [user dashboard](https://ui.dashboard.callcentre.panoptes.betalab.rp.bt.com/).
 
 ## Expected Result
 Due to the concept shift, the performance of the model will be significantly lower. An algorithm execution using the _accuracy-check_ algorithm or similar should detect this and send us an email notification.
