@@ -114,8 +114,8 @@ Deployment callcenter{
 
 As we can see for _Base Algorithm Executions_, we can specify the following:
 - The _Algorithm_ to be executed.
-- The features/predictions/labels that will be used as input from the _historical data_ and the _live data_. **Beware**, it is not necessary to include data from both sets. Some _Algorithms_ might be fine to operate only on _live data_. We can for example calculate the accuracy/recall/f1 score that a deployed model has achieved on recent data by using as input the prediction and the labels in the _live data_.    
-- A mapping from the potential results of the _Algorithm Execution_ to the _Action Execution_ that should be triggered.
+- The _Features_/_Predictions_/_Labels_ that will be used as input from the _historical data_ and the _live data_. **Beware**, it is not necessary to include data from both sets. Some _Algorithms_ might be fine to operate only on _live data_. We can for example calculate the accuracy/recall/f1 score that a deployed model has achieved on recent data by using as input the _Prediction_ that the _Model_ outputs and the _Label_ it is trying to predict in the _live data_.    
+- A mapping from the potential results of the _Algorithm Execution_ to the _Action Execution_ that should be triggered. **Remember**: The result of an _Algorithm Execution_ is a number in [0,n) where n is the _severity levels_ of the _Algorithm_ used.
 - Values for the parameters of the _Algorithm_ if there are any.
 
 Let's now also add a _HigherOrderAlgorithmExecution_ in our _Deployment_.
@@ -142,7 +142,7 @@ Deployment callcenter{
 }
 ```
 As we can see it is quite similar to a _BaseAlgorithmExecution_ with a couple of exceptions:
-- Instead of defining which features/predictions/labels should be used as input, we specify an _AlgorithmExecution_ whose execution results will be used as inputs.
+- Instead of defining which _Features_/_Predictions_/_Labels_ should be used as input, we specify an _AlgorithmExecution_ whose execution results will be used as inputs.
 - We specify a minimum number of execution results of the observed _AlgorihtmExecution_ that need to be available for the _HigherOrderAlgorithmExecution_ to start executing.
 - We specify a maximum number of results of the observed_AlgorithmExecution_ that will be used as input for the _HigherOrderAlgorithmExecution_. In the example above, the latest 5 execution results of the wait_duration_shift _BaseAlgorithmExecution_ will be used as input for the ema-wait_duration_shift _HigherOrderAlgorithmExecution_.
 
@@ -167,7 +167,9 @@ ActionExecution emailMe{
 }
 ```
 ## Trigger
-A _Trigger_ specifies how often an Algorithm execution should be triggered. Let's add it to our _Deployment_.
+A _Trigger_ specifies how often a _Base Algorithm Execution_ should be triggered. **Beware**, _Triggers_ only specify the execution schedule of _Base Algorithm Executions_ because the execution schedule of _Higher Order Algorithm Executions_ is implicitly defined by the schedule of the _Algorithm Execution_ they observe. In essence, a _Higher Order Algorithm Execution_ will run after _Algorithm Execution_ it observes has run and thus follows the same schedule. The only exception is when the observed _Algorithm Execution_ is new and hasn't run enough times to satisfy the _Higher Order Algorithm's_ _min observations_ threshold. In that case the observed _Algorithm Execution_ will run a few times without triggering the _Higher Order Algorithm Execution_ but after been executed _min observation_ times, each new run **will** trigger the _Higer Order Algorithm Execution_.
+
+Let's add a _Trigger_ to our _Deployment_.
 ```
 Deployment callcenter{
     model callcenter-tree
