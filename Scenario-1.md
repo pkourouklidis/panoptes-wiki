@@ -1,7 +1,7 @@
 In this scenario, we want to run a simulation with no dataset shift.
 
 ## PDL script
-The following is the PDL script that should be applied before running the simulation:
+In the [web editor](http://editor.panoptes.uk/), delete the existing script(if any) and paste the PDL script below. Afterward, press the apply button and wait for the "success" message.
 ```
 FeatureStore{
 	features
