@@ -1,9 +1,9 @@
 Out of the box, the [Panoptes web editor](http://editor.panoptes.uk) can help users catch many errors but these are mainly related to syntax. To help ensure that the semantics of users' PDL scripts are also correct, the language provides a number of optional features.
 
 ## Parameter Type Correctness
-_Algorithms_  and _Actions_ might be developed by one person and used in _Algorithm/Action Executions_ created by other members of a team. In that case, the creator of the  _Algorithm_/_Action_ adds type annotations to any defined _parameters_ to help guide others.
+When creating _Algorithms_  and _Actions_ you can add type annotations to any defined parameters. _Algorithm Execution_ and _Action Executions_ then must provide parameter values that respect the annotated parameters' types.
 ```
-BaseAlgorithm kolmogorovSmirnov{
+BaseAlgorithm kolmogorov-smirnov{
     codebase "https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/example-algorithm-repo"
     runtime pythonFunction
     severity levels 2
@@ -11,14 +11,20 @@ BaseAlgorithm kolmogorovSmirnov{
 }
 
 BaseAlgorithmExecution wait_duration_shift{
-    algorithm kolmogorovSmirnov
+    algorithm kolmogorov-smirnov
     live data wait_duration
     historical data wait_duration
-    actions 1->retrainCallcenterLinear
+    actions 1->retrainCallcenter
     parameter values pValue = true
 }
 ```
-The above PDL script will cause the web editor to output an error because the parameter _pValue_ of the _kolmogorovSmirnov Base Algorithm_ was expecting a real number value but received a _boolean_.
+The above PDL script will cause the web editor to output an error because the parameter _pValue_ of the _kolmogorov-smirnov Base Algorithm_ was expecting a real number value but received a _boolean_.
+
+Here are the parameter types supported in PDL:
+- Real (e.g 0.1, 1, 10.554)
+- Integer (e.g 2, -3, 15)
+- Boolean (true, false all lowercase)
+- String (with quotes any character is ok "sadfdfs fasdfasd://**". Without quotes only A-Z/a-z/@/_/. 0-9 and - are ok but not at the beginning of the string AcbD-08_7@gmail.com)
 
 ## Feature Type Correctness
 Similarly to _parameters_, _features_ can also be annotated with a type. From a statistical point of view, a random variable can be _continuous_, _categorical_ (aka nominal categorical) or _ordered_ (aka ordinal categorical). Since some shift detection algorithms work best for a specific type of random variables, this information can be added to the definition of a _Base Algorithm_.
