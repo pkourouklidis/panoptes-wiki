@@ -85,31 +85,24 @@ Deployment callcenter{
 ## Simulation settings
 Apply the following settings in the [simulation dashboard](https://ui.digitaltwin.callcentre.panoptes.betalab.rp.bt.com/):
 
-Call Interval: minimum
+### Call Configuration
+- Call Interval: minimum
+- Average Call Difficulty: minimum
+- Wait Time Until Call Gets Bounced: maximum
+- Average Service Time: minimum
 
-Average Call Difficulty: minimum
+### Customer Configuration
+- Expected Wait Time: minimum
+- Average Patience During Waiting: minimum (fully patient)
+- Average Patience During Service: minimum (fully patient)
+- Average Understanding for Failure: minimum (fully tolerant)
 
-Wait Time Until Call Gets Bounced: maximum
+### Worker Configuration
+- Number of Workers: 15
+- Average Worker Skill: maximum
+- Average Worker Speed: maximum
 
-Average Service Time: minimum
-
-
-Expected Wait Time: minimum
-
-Average Patience During Waiting: minimum (fully patient)
-
-Average Patience During Service: minimum (fully patient)
-
-Average Understanding for Failure: minimum (fully tolerant)
-
-
-Number of Workers: 15
-
-Average Worker Skill: maximum
-
-Average Worker Speed: maximum
-
-After applying the settings start, the simulation and let it run for 100 calls. The number of calls served can be seen in the user dashboard.
+After applying the settings, start the simulation and let it run for 100 calls. The number of calls served can be seen in the [user dashboard](https://ui.dashboard.callcentre.panoptes.betalab.rp.bt.com/).
 
 ## Expected Result
 This simulation run produces data that are similar to the ones used to train the ML model. Therefore there will be no dataset shift detected and no email notification.
