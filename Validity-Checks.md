@@ -26,11 +26,13 @@ Here are the parameter types supported in PDL:
 - Boolean (true, false all lowercase)
 - String (with quotes any character is ok "sadfdfs fasdfasd://**". Without quotes only A-Z/a-z/@/_/. 0-9 and - are ok but not at the beginning of the string AcbD-08_7@gmail.com)
 
-## Feature Type Correctness
+## Statistical Type Correctness
 Similarly to _parameters_, _features_ and _labels_ can also be annotated with a type. From a statistical point of view, a random variable can be:
 - _continuous_ (e.g. 0.1,0.25,1.5)
 - _categorical_ (aka nominal categorical like cat, dog, mouse)
 - _ordered_ (aka ordinal categorical like small medium large)
+
+**Note**: Predictions(the output of a _Model_) are not annotated with a statistical type but they inherit the statistical type of the label they predict.
 
 Some shift detection algorithms work better with a specific type of random variables. To prevent errors, this information can be added to the definition of a _Base Algorithm_ with the _accepts_/_accepts only_ keyword.
 
