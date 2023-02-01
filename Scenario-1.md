@@ -39,12 +39,6 @@ Action email{
 	parameters mandatory email:String
 }
 
-Action retrain{
-    parameters
-        mandatory ioNames:String,
-        mandatory containerImage:String
-}
-
 Deployment callcenter{
 	model callcenter-tree
 	
