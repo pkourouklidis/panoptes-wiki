@@ -56,22 +56,9 @@ Deployment callcenter{
 		parameter values pValue = 0.05
 	}
 	
-	BaseAlgorithmExecution callcenter-accuracy{
-		algorithm accuracy-check
-		live data is_happy, happiness_prediction
-		actions 1->emailMe
-		parameter values threshold = 0.80
-	}
-	
 	ActionExecution emailMe{
 		action email
 		parameter values email=panagiotis.kourouklidis@bt.com
-	}
-	
-	ActionExecution retrainCallcenter{
-	    action retrain
-	    parameter values ioNames="wait_duration,service_duration,is_solved,is_happy",  
-	        containerImage="registry.docker.nat.bt.com/panoptes/callcenter-model-training:latest"
 	}
 	
 	Trigger t1{
