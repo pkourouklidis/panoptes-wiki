@@ -1,7 +1,7 @@
 In this scenario, we want to run a simulation with covariate shift. In essence, the average service time will be increased but customers' tolerance to waiting times and failures will stay the same.
 
 ## PDL script
-The PDL script that should be applied before running the simulation is the same with the one in scenario 1:
+In the [web editor](http://editor.panoptes.uk/), delete the existing script(if any) and paste the PDL script below. Afterward, press the apply button and wait for the "success" message.
 ```
 FeatureStore{
 	features
