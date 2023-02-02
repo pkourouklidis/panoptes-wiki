@@ -29,6 +29,6 @@ We would also like to evaluate how easy it is for users to use PDL to specify ne
 We now ask the participant to modify the script provided such that the system can detect concept shift and respond by sending us an email notification. Participants are free to provide their own algorithms or use the one implemented by us.
 - [Scenario 3: Concept shift](Scenario 3)
 
-## Step 3: Evaluating effort-reduction
-In this final step, we would like to ask the participants to estimate the potential of Panoptes to reduce the effort required for the monitoring of ML model performance. You can base your estimate on your interaction with the demo provided and your previous experience with using ML models in production.
-- Effort-reduction evaluation form
+## Step 3: Evaluating Utility
+In this final step, we would like to ask you to estimate the potential of Panoptes to reduce the effort required for the monitoring of ML model performance. You can base your estimate on your interaction with the demo provided and your previous experience with deploying ML models in production.
+- Utility evaluation form
