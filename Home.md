@@ -1,11 +1,9 @@
-Welcome to the Panoptes evaluation study. Thank you for participating! The goal of this study is to evaluate the usability and usefulness of Panoptes in a context that is as realistic as possible under laboratory conditions.
+Welcome to the Panoptes evaluation study. Thank you for participating! The goal of this study is to evaluate the usability and utility of Panoptes in a context that is as realistic as possible under laboratory conditions.
 
-To simplify the process, I have included in this wiki all the information that the participants are going to need. Here is the step-by-step process of this study.
-
-It is kindly requested that you read through the steps and try to go as far as you can before our meeting. I have tried to make the process as straightforward as possible. Your time and effort are greatly appreciated!
+As opposed to the previous study in which you may have participated, this is a self-directed study. You are kindly asked to follow the step-by-step instructions below. Of course, I am always available if something goes wrong and you cannot proceed. On step 2, in particular, which is run on a live system, you might need my assistance.  
 
 ## Step 0: Preparation
-To avoid presenting a lot of material during our meeting, I thought it would be good to create some documentation that the participants can read at their own pace. This way we can hopefully have more time for discussion. Below are the links to the relevant material.
+Below are the links to Panoptes' documentation. It is necessary that you carefully read it as the next steps of the study rely on your understanding of Panoptes.
 - [High-level overview of this project.](Introduction)
 - [Explanation of the demo system that we've built to showcase the functionality of Panoptes.](Demo System)
 - [The core concepts of Panoptes Description Language (PDL).](Core Concepts)
@@ -14,9 +12,9 @@ To avoid presenting a lot of material during our meeting, I thought it would be 
 - [How Panoptes integrates with the underlying platform (optional).](Platform Integration)
 
 ## Step 1: Evaluating comprehensibility
-We would like to evaluate how easy it is for data scientists to understand PDL scripts. For this, we have created an example PDL script targeting the call center demo system and a small questionnaire to check that the participants understand what the script defines.
+We would like to evaluate how easy it is for data scientists to understand PDL scripts. For this, we have created an example PDL script targeting the call center demo system and a small questionnaire that checks your understanding of what the script expresses.
 
-If you feel that you have got a good enough understanding of PDL after reading the documentation, please feel free to fill in the questionnaire right away. I am always available for questions/clarifications through email/Teams. 
+If you feel that you have got a good enough understanding of PDL after reading the documentation, please feel free to fill in the questionnaire right away. Otherwise, I am always available for questions/clarifications through email/Teams (panagiotis.kourouklidis@bt.com). 
 - [Example script](Example Script)
 - [Questionnaire](Questionnaire)
 
