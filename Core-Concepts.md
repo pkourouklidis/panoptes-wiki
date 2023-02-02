@@ -1,4 +1,4 @@
-To illustrate the core concepts of Panoptes uses we will follow the scenario of the [demo system](Demo System) and build a PDL script step by step. The [web editor](http://editor.panoptes.uk/) provides syntax highlighting and error checking that can help you along the way.
+To illustrate the core concepts of Panoptes uses we will follow the scenario of the [demo system](Demo-System) and build a PDL script step by step. The [web editor](http://editor.panoptes.uk/) provides syntax highlighting and error checking that can help you along the way.
 
 ## Preliminary concepts
 We will start by defining a _Deployment_ which groups together all of the information needed to monitor the performance of a deployed ML model.
@@ -83,7 +83,7 @@ As we can see, it is very similar to the _Base Algorithm_, it just references a 
 ## Algorithm Runtime
 As seen in the previous PDL snippets, every _Algorithm_ definition needs to reference an _Algorithm Runtime_. The job of an _Algorithm Runtime_ is to fetch all the data that an _Algorithm_ needs for its execution, call the _Algorithm_, receive the result of the execution and forward it to the component that requested the execution of the _Algorithm_.
 
-That being said, data scientists **do not** need to implement _Algorithm Runtimes_ themselves. They can choose one of the [available Algorithm Runtimes](Algorithm Runtimes) that fits their needs. The only thing necessary is a simple "placeholder" that we can reference when we add _Algorithms_ in our PDL scripts. Here are two examples of the two types of _Algorithm Runtimes_ (corresponding to the two types of _Algorithms_).
+That being said, data scientists **do not** need to implement _Algorithm Runtimes_ themselves. They can choose one of the [available Algorithm Runtimes](Algorithm-Runtimes) that fits their needs. The only thing necessary is a simple "placeholder" that we can reference when we add _Algorithms_ in our PDL scripts. Here are two examples of the two types of _Algorithm Runtimes_ (corresponding to the two types of _Algorithms_).
 
 ```
 BaseAlgorithmRuntime pythonFunction
@@ -169,7 +169,7 @@ ActionExecution emailMe{
 }
 ```
 ## Trigger
-A _Trigger_ specifies how often a _Base Algorithm Execution_ should be triggered. **Beware**, _Triggers_ only specify the execution schedule of _Base Algorithm Executions_ because the execution schedule of _Higher Order Algorithm Executions_ is implicitly defined by the schedule of the _Algorithm Execution_ they observe. In essence, a _Higher Order Algorithm Execution_ will run after _Algorithm Execution_ it observes has run and thus follows the same schedule. The only exception is when the observed _Algorithm Execution_ is new and hasn't run enough times to satisfy the _Higher Order Algorithm's_ _min observations_ threshold. In that case the observed _Algorithm Execution_ will run a few times without triggering the _Higher Order Algorithm Execution_ but after been executed _min observation_ times, each new run **will** trigger the _Higer Order Algorithm Execution_.
+A _Trigger_ specifies how often a _Base Algorithm Execution_ should be triggered. **Beware**, _Triggers_ only specify the execution schedule of _Base Algorithm Executions_ because the execution schedule of _Higher Order Algorithm Executions_ is implicitly defined by the schedule of the _Algorithm Execution_ they observe. In essence, a _Higher Order Algorithm Execution_ will run after _Algorithm Execution_ it observes has run and thus follows the same schedule. The only exception is when the observed _Algorithm Execution_ is new and hasn't run enough times to satisfy the _Higher Order Algorithm's_ _min observations_ threshold. In that case, the observed _Algorithm Execution_ will run a few times without triggering the _Higher Order Algorithm Execution_ but after being executed _min observation_ times, each new run **will** trigger the _Higer Order Algorithm Execution_.
 
 Let's add a _Trigger_ to our _Deployment_.
 ```
@@ -192,6 +192,8 @@ Deployment callcenter{
     Trigger t1{
         every
         100 samples
+        100 prediction
+        100 labels
         or
         every
         one day
@@ -201,8 +203,15 @@ Deployment callcenter{
 ```
 
 The above trigger, for example, specifies that the _Algorithm Execution_ *exec1* will be triggered if either of the following two alternatives is true:
-- There have been at least 100 inference requests, 100 inference responses and 100 ground truth labels since the last time this trigger has gone off.
+- There have been at least 100 prediction requests, 100 prediction responses, and 100 ground truth labels since the last time this trigger has gone off (all three conditions must be true).
 - There has been at least one day since the last time this trigger has gone off.
 
+In summary, there are four types of events that can make a trigger go off:
+- A new data point has been received that can be used as an ML model input (_samples_ keyword).
+- A new prediction has been produced based on the above sample (_predictions_ keyword).
+- The ground truth label for the above prediction has become available (_labels_ keyword).
+- A certain amount of time has passed since the last time the _Trigger_ has gone off (one day/one week/one month/one year keywords).
+
 A couple of clarifications:
-- There are four types of events that can make a trigger go off. The first two are when there is a new data point that can be used as an ML model input (i.e sample) and when the ML model makes a prediction on that sample. In an online inference scenario, these two events will come in pairs. But because of the possibility of batch inference, where predictions are made all at once on a set of samples, PDL users can define triggers based on either event.
+- In an online serving setting, _Samples_ and _Predictions_ will come in pairs. But because of the possibility of batch serving, where we collect _samples_ over a period of time and make _predictions_ on all of them at once, PDL users can define _Triggers_ based on either event.
+- When a _Base Algorithm Execution_ defines two or more related inputs (eg a _Prediction_ and its related _Label_) the data will be made available in a tabular format (ie a Pandas dataframe) where their relationship will be preserved. Given that A _Label_ always comes after a _Prediction_ is produced and a _Prediction_ is produced after a _Sample_ is received, the input will have some missing values if, for example, there is a _Prediction_ for which the corresponding _Label_ is not yet available. With that in mind, to guarantee that the input will have a certain number of complete rows, it should be based on the input that comes last. We should for example define a _Trigger_ every 100 _Labels_ to ensure that the input will have at least 100 rows with _Prediction_ as well as _Label_ values.
