@@ -5,7 +5,7 @@ As opposed to the previous study in which you may have participated, this is a s
 ## Step 0: Preparation
 Below are the links to Panoptes' documentation. It is necessary that you carefully read it as the next steps of the study rely on your understanding of Panoptes.
 - [High-level overview of this project.](Introduction)
-- [Explanation of the demo system that we've built to showcase the functionality of Panoptes.](Demo System)
+- [Explanation of the demo system that we've built to showcase the functionality of Panoptes.](Demo-System)
 - [The core concepts of Panoptes Description Language (PDL).](Core-Concepts)
 - [Additional features of PDL related to validity checks.](Validity-Checks)
 - [Adding custom algorithms to detect dataset shift.](Algorithm-Runtimes)
