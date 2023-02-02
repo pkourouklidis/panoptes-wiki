@@ -147,7 +147,9 @@ As we can see it is quite similar to a _BaseAlgorithmExecution_ with a couple of
 - We specify a maximum number of results of the observed_AlgorithmExecution_ that will be used as input for the _HigherOrderAlgorithmExecution_. In the example above, the latest 5 execution results of the wait_duration_shift _BaseAlgorithmExecution_ will be used as input for the ema-wait_duration_shift _HigherOrderAlgorithmExecution_.
 
 ## Action
-An _Action_ is a functionality of the underlying platform that can be triggered in response to dataset shift. For example, when an _Algorithm Execution_ indicates the presence of dataset shift, we could send an email notification.
+An _Action_ is a functionality of the underlying platform that can be triggered in response to dataset shift. All of the currently available _Actions_ can be seen [here](Actions).
+
+As an example, when an _Algorithm Execution_ indicates the presence of dataset shift, we could send an email notification.
 
 ```
 Action email{
