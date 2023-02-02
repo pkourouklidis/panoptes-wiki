@@ -15,5 +15,5 @@ Some free-form feedback would also be greatly appreciated. For example:
 - What did you like.
 - What did you not like.
 - Potential applications/case studies that we can do.
-- Previous experiences with implementing continuous performance monitoring.
+- Previous experiences with implementing continuous performance monitoring. How long did it take you?
 - Anything else that comes to mind!
