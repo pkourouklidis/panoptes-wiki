@@ -1,7 +1,11 @@
 In this scenario, we want to run a simulation with concept shift. In essence, the average wait/service time will stay the same but the customers' tolerance to waiting times and failures will be lower. As a result, the accuracy of the ML model that was trained on the initial customer interactions will now be significantly lower.
 
 ## PDL script
-In this scenario, we ask the participants to modify the script from scenario 2 so that the concept shift is detected and we receive an email notification. The participants can use the _accuracy-check_ algorithm or implement their own algorithm for the _pythonFunction_ runtime.
+In this scenario, we ask the participants to modify the script from scenario 2 so that the concept shift is detected and we receive an email notification.
+
+High-level Guide:
+- You can utilise the _accuracy-check_ _Algorithm_ to detect the concept shift. The _Algorithm's_ [git repo](https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/accuracy-algorithm-repo) documents how it should be used.
+- You also have to make an addition to the script to ensure that the _Algorithm_ is going to be executed after 100 calls.
 
 ## Simulation settings
 Apply the following settings in the [simulation dashboard](https://ui.digitaltwin.callcentre.panoptes.betalab.rp.bt.com/):
