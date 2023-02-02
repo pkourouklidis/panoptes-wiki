@@ -31,4 +31,4 @@ We now ask the participant to modify the script provided such that the system ca
 
 ## Step 3: Evaluating Utility
 In this final step, we would like to ask you to estimate the potential of Panoptes to reduce the effort required for the monitoring of ML model performance. You can base your estimate on your interaction with the demo provided and your previous experience with deploying ML models in production.
-- Utility evaluation form
+- [Utility evaluation](Utility Evaluation)
