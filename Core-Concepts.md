@@ -1,4 +1,4 @@
-To illustrate the core concepts of Panoptes uses we will follow the scenario of the [demo system](Demo-System) and build a PDL script step by step. The [web editor](http://editor.panoptes.uk/) provides syntax highlighting and error checking that can help you along the way.
+To illustrate the core concepts of Panoptes uses we will follow the scenario of the [demo system](Demo-System.md) and build a PDL script step by step. The [web editor](http://editor.panoptes.uk/) provides syntax highlighting and error checking that can help you along the way.
 
 ## Preliminary concepts
 We will start by defining a _Deployment_ which groups together all of the information needed to monitor the performance of a deployed ML model.
@@ -83,7 +83,7 @@ As we can see, it is very similar to the _Base Algorithm_, it just references a 
 ## Algorithm Runtime
 As seen in the previous PDL snippets, every _Algorithm_ definition needs to reference an _Algorithm Runtime_. The job of an _Algorithm Runtime_ is to fetch all the data that an _Algorithm_ needs for its execution, call the _Algorithm_, receive the result of the execution and forward it to the component that requested the execution of the _Algorithm_.
 
-That being said, data scientists **do not** need to implement _Algorithm Runtimes_ themselves. They can choose one of the [available Algorithm Runtimes](Algorithm-Runtimes) that fits their needs. The only thing necessary is a simple "placeholder" that we can reference when we add _Algorithms_ in our PDL scripts. Here are two examples of the two types of _Algorithm Runtimes_ (corresponding to the two types of _Algorithms_).
+That being said, data scientists **do not** need to implement _Algorithm Runtimes_ themselves. They can choose one of the [available Algorithm Runtimes](Algorithm-Runtimes.md) that fits their needs. The only thing necessary is a simple "placeholder" that we can reference when we add _Algorithms_ in our PDL scripts. Here are two examples of the two types of _Algorithm Runtimes_ (corresponding to the two types of _Algorithms_).
 
 ```
 BaseAlgorithmRuntime pythonFunction
@@ -147,7 +147,7 @@ As we can see it is quite similar to a _BaseAlgorithmExecution_ with a couple of
 - We specify a maximum number of results of the observed_AlgorithmExecution_ that will be used as input for the _HigherOrderAlgorithmExecution_. In the example above, the latest 5 execution results of the wait_duration_shift _BaseAlgorithmExecution_ will be used as input for the ema-wait_duration_shift _HigherOrderAlgorithmExecution_.
 
 ## Action
-An _Action_ is a functionality of the underlying platform that can be triggered in response to dataset shift. All of the currently available _Actions_ can be seen [here](Actions).
+An _Action_ is a functionality of the underlying platform that can be triggered in response to dataset shift. All of the currently available _Actions_ can be seen [here](Actions.md).
 
 As an example, when an _Algorithm Execution_ indicates the presence of dataset shift, we could send an email notification.
 
