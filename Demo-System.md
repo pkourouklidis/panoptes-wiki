@@ -9,7 +9,7 @@ The purpose of this example system is to adjust the various simulation variables
 The following are the two user interfaces that you can use to interact with the application.
 
 ## User Dashboard
-The user dashboard can be accessed [here](https://ui.dashboard.callcentre.panoptes.betalab.rp.bt.com).
+The user dashboard can be accessed [here](http://ui.dashboard.callcentre.panoptes.uk).
 In the user dashboard, one can see information about every call center simulation that has been run so far.
 
 ![dashboard2](uploads/4e81892ba30f30b7fddb0a3a4ab963f1/dashboard2.png)
@@ -22,7 +22,7 @@ In the various widgets included in the user dashboard we can see the following:
 - The predictor status widget can also be clicked to show the results of every dataset shift detection execution so far.
 
 ## Simulation Dashboard
-The simulation dashboard can be accessed [here](https://ui.digitaltwin.callcentre.panoptes.betalab.rp.bt.com).
+The simulation dashboard can be accessed [here](http://ui.digitaltwin.callcentre.panoptes.uk).
 In the simulation dashboard, one can start and stop simulation runs with specific configurations.
 
 ![digitialTwin2](uploads/51559c91fae615294896e29ec9ac81df/digitialTwin2.png)
