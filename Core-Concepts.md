@@ -32,7 +32,7 @@ In the PDL snippet above, we have defined a _Model_ as well as a _FeatureStore_ 
 We will now start defining our dataset-shift-detecting process. We will start by defining an _Algorithm_.
 ```
 BaseAlgorithm kolmogorov-smirnov{
-    codebase "https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/example-algorithm-repo"
+    codebase "https://github.com/pkourouklidis/kolmogorov-smirnov-algorithm"
     runtime pythonFunction
     severity levels 2
     parameters pValue
@@ -40,7 +40,7 @@ BaseAlgorithm kolmogorov-smirnov{
 ```
 An _Algorithm's_ job is to decide on the presence of dataset shift based on the data it receives as input. The input differs for the two types of _Algorithms_ that a user can define. The first type is the _Base Algorithm_. In the general case, _Base Algorithms_ receives as input _historical data_ (ie. data that was used to train the ML model) and _live data_ (ie. recent data seen in prediction requests). The above is an example of a _Base Algorithm_ in PDL.
 
-The referenced [git repository](https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/example-algorithm-repo) includes the following files:
+The referenced [git repository](https://github.com/pkourouklidis/kolmogorov-smirnov-algorithm) includes the following files:
 
 detector.py
 ```python

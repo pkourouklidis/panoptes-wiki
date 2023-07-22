@@ -4,7 +4,7 @@ Out of the box, the [Panoptes web editor](http://editor.panoptes.uk) can help us
 When creating _Algorithms_  and _Actions_ you can add type annotations to any defined parameters. _Algorithm Execution_ and _Action Executions_ then must provide parameter values that respect the annotated parameters' types.
 ```
 BaseAlgorithm kolmogorov-smirnov{
-    codebase "https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/example-algorithm-repo"
+    codebase "https://github.com/pkourouklidis/kolmogorov-smirnov-algorithm"
     runtime pythonFunction
     severity levels 2
     parameters pValue:Real
@@ -46,7 +46,7 @@ FeatureStore{
 }
 
 BaseAlgorithm kolmogorov-smirnov{
-    codebase "https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/example-algorithm-repo"
+    codebase "https://github.com/pkourouklidis/kolmogorov-smirnov-algorithm"
     runtime pythonFunction
     severity levels 2
     accepts only continuous

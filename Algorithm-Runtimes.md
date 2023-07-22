@@ -4,7 +4,7 @@ As seen in the [Core Concepts section](Core Concepts), _Algorithm Runtimes_ prov
 To implement an algorithm in a way that a specific algorithm runtime can understand, users should follow the specifications provided by the developer of the runtime. Below are the specifications for the currently deployed runtimes.
 
 ## Python Function Algorithm Runtime
-The specifications for this _Algorithm Runtime_ are quite simple. In [this](https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/example-algorithm-repo) repository you can find an example algorithm implemented for this runtime.
+The specifications for this _Algorithm Runtime_ are quite simple. In [this](https://github.com/pkourouklidis/kolmogorov-smirnov-algorithm) repository you can find an example algorithm implemented for this runtime.
 
 All we need to do is implement a function called `detector` like so:
 ```python
@@ -27,7 +27,7 @@ scipy
 For the development of a new _Algorithm_, you can use the Panoptes CLI to test your python function locally before you use it in production.
 To install the Panoptes CLI first clone the following git repository:
 
-`git clone https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/panoptescli`
+`git clone https://github.com/pkourouklidis/python-function-runtime-cli`
 
 Then install the python package included in the cloned repo:
 
@@ -40,7 +40,7 @@ Now you can use the Panoptes CLI to test your algorithms locally.
 You need to pass in paths to csv files containing the live and historical datasets, the path to the python file that contains the `detector` function, and key-value pairs for any parameters that your detector needs.
 
 ## Higher Order Python Function Runtime
-This _Algorithm Runtime_ is very similar to the _Python Function Runtime_ but it is used to implement _Higher Order Algorithms_. In [this](https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/ema-algorithm-repo) repository you can find an example algorithm implemented for this runtime.
+This _Algorithm Runtime_ is very similar to the _Python Function Runtime_ but it is used to implement _Higher Order Algorithms_. In [this](https://github.com/pkourouklidis/ema-algorithm) repository you can find an example algorithm implemented for this runtime.
 
 Similarly to _Python Function Runtime_, we need a function called `detector`:
 ```python

@@ -21,7 +21,7 @@ Model callcenter-tree{
 BaseAlgorithmRuntime pythonFunction
 
 BaseAlgorithm kolmogorov-smirnov{
-	codebase "https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/example-algorithm-repo"
+	codebase "https://github.com/pkourouklidis/kolmogorov-smirnov-algorithm"
 	runtime pythonFunction
 	severity levels 2
 	accepts only continuous
@@ -29,7 +29,7 @@ BaseAlgorithm kolmogorov-smirnov{
 }
 
 BaseAlgorithm accuracy-check{
-	codebase "https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/accuracy-algorithm-repo"
+	codebase "https://github.com/pkourouklidis/accuracy-algorithm"
 	runtime pythonFunction
 	severity levels 2
 	parameters threshold:Real

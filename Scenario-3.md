@@ -4,7 +4,7 @@ In this scenario, we want to run a simulation with concept shift. In essence, th
 In this scenario, we ask the participants to modify the script from scenario 2 so that the concept shift is detected and we receive an email notification.
 
 High-level Guide:
-- You can utilise the _accuracy-check_ _Algorithm_ to detect the concept shift. The _Algorithm's_ [git repo](https://gitlab.agile.nat.bt.com/BETALAB/research/panoptes/accuracy-algorithm-repo) documents how it should be used.
+- You can utilise the _accuracy-check_ _Algorithm_ to detect the concept shift. The _Algorithm's_ [git repo](https://github.com/pkourouklidis/accuracy-algorithm) documents how it should be used.
 - You also have to make an addition to the script to ensure that the _Algorithm_ is going to be executed after 100 calls.
 
 ## Simulation settings
